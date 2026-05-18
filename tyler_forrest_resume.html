@@ -1,0 +1,306 @@
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap');
+
+  .resume {
+    font-family: 'DM Sans', sans-serif;
+    color: var(--color-text-primary);
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2.5rem 2rem;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  .header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+    margin-bottom: 2.5rem;
+    gap: 2rem;
+  }
+
+  .name-block h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 52px;
+    font-weight: 400;
+    line-height: 0.95;
+    margin: 0 0 0.5rem;
+    letter-spacing: -1px;
+    color: var(--color-text-primary);
+  }
+
+  .name-block .tagline {
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--color-text-secondary);
+    margin: 0.5rem 0 0;
+    font-weight: 400;
+  }
+
+  .contact-block {
+    text-align: right;
+    padding-top: 0.5rem;
+  }
+
+  .contact-block p {
+    margin: 2px 0;
+    font-size: 12.5px;
+    color: var(--color-text-secondary);
+  }
+
+  .contact-block a {
+    color: #1D6E4F;
+    text-decoration: none;
+  }
+
+  .divider {
+    height: 0.5px;
+    background: var(--color-border-tertiary);
+    margin: 1.5rem 0;
+  }
+
+  .body-grid {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 3rem;
+  }
+
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: #1D6E4F;
+    margin: 0 0 0.75rem;
+    padding-bottom: 4px;
+    border-bottom: 1px solid #1D6E4F;
+  }
+
+  .section {
+    margin-bottom: 2rem;
+  }
+
+  .entry {
+    margin-bottom: 1.1rem;
+  }
+
+  .entry-title {
+    font-weight: 500;
+    font-size: 13.5px;
+    margin: 0;
+    color: var(--color-text-primary);
+  }
+
+  .entry-title em {
+    font-style: italic;
+    font-family: 'DM Serif Display', serif;
+    font-size: 14px;
+  }
+
+  .entry-meta {
+    font-size: 11.5px;
+    color: var(--color-text-secondary);
+    margin: 1px 0 3px;
+    font-weight: 400;
+  }
+
+  .entry-desc {
+    font-size: 12.5px;
+    color: var(--color-text-primary);
+    margin: 0;
+    line-height: 1.55;
+    opacity: 0.9;
+  }
+
+  .skill-group {
+    margin-bottom: 1.25rem;
+  }
+
+  .skill-group-label {
+    font-size: 11.5px;
+    font-weight: 500;
+    color: var(--color-text-primary);
+    margin: 0 0 4px;
+  }
+
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .tag {
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 3px;
+    background: var(--color-background-secondary);
+    border: 0.5px solid var(--color-border-tertiary);
+    color: var(--color-text-secondary);
+  }
+</style>
+
+<div class="resume">
+  <div class="header">
+    <div class="name-block">
+      <h1>Tyler<br>Forrest</h1>
+      <p class="tagline">Video Editor &nbsp;·&nbsp; Producer &nbsp;·&nbsp; Creative Strategist</p>
+    </div>
+    <div class="contact-block">
+      <p>5141 Biloxi Ave, Toluca Woods, CA 91601</p>
+      <p>(985) 705-1628</p>
+      <p><a href="mailto:tyleraforrest@gmail.com">tyleraforrest@gmail.com</a></p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="body-grid">
+    <div class="main-col">
+
+      <div class="section">
+        <p class="section-label">Commercial</p>
+
+        <div class="entry">
+          <p class="entry-title">Frog Legs Media</p>
+          <p class="entry-meta">2022–Present &nbsp;·&nbsp; Creative Marketing &amp; Video Production</p>
+          <p class="entry-desc">Full-service creative and video production driving brand storytelling and digital marketing campaigns for a diverse client roster.</p>
+        </div>
+
+        <div class="entry">
+          <p class="entry-title">SC Fest</p>
+          <p class="entry-meta">Social Media Advertising</p>
+          <p class="entry-desc">Concepted and produced paid social media ad campaigns for festival promotion.</p>
+        </div>
+
+        <div class="entry">
+          <p class="entry-title">TikTok Shop</p>
+          <p class="entry-meta">2024–2026 &nbsp;·&nbsp; in partnership with Outlandish Agency</p>
+          <p class="entry-desc">#ShopLatinOwned advertising campaign, blending e-commerce strategy with culturally resonant creative content.</p>
+        </div>
+
+        <div class="entry">
+          <p class="entry-title">Starbucks</p>
+          <p class="entry-meta">2022 &nbsp;·&nbsp; in partnership with My Code Agency</p>
+          <p class="entry-desc">"Amplify Your Happy" — 12-video advertising campaign celebrating community voices and brand authenticity.</p>
+        </div>
+
+        <div class="entry">
+          <p class="entry-title">Show My Property</p>
+          <p class="entry-meta">2019–2021</p>
+          <p class="entry-desc">Commercial real estate tours and marketing videos for local businesses including Muffin Can Stop Us, WellNest, and others.</p>
+        </div>
+      </div>
+
+      <div class="section">
+        <p class="section-label">Film</p>
+
+        <div class="entry">
+          <p class="entry-title"><em>Strings</em></p>
+          <p class="entry-meta">2026 &nbsp;·&nbsp; Executive Producer, Director</p>
+        </div>
+
+        <div class="entry">
+          <p class="entry-title"><em>Balistyx</em></p>
+          <p class="entry-meta">2026 &nbsp;·&nbsp; Producer, Cinematographer</p>
+          <p class="entry-desc">Feature documentary chronicling the birth of hip-hop at the Sunset Strip and the origin story of the Black Eyed Peas.</p>
+        </div>
+
+        <div class="entry">
+          <p class="entry-title"><em>Herman</em></p>
+          <p class="entry-meta">Executive Producer &amp; Composer</p>
+        </div>
+
+        <div class="entry">
+          <p class="entry-title"><em>Suicide Disco</em></p>
+          <p class="entry-meta">2026 &nbsp;·&nbsp; Feature Film — directed by RA The Rugged Man</p>
+        </div>
+
+        <div class="entry">
+          <p class="entry-title"><em>The Dirty South</em></p>
+          <p class="entry-meta">2024 &nbsp;·&nbsp; Co-Executive Producer</p>
+        </div>
+      </div>
+
+      <div class="section">
+        <p class="section-label">Fine Art Representation</p>
+
+        <div class="entry">
+          <p class="entry-title">Mark Strickland</p>
+          <p class="entry-meta">2026–Present &nbsp;·&nbsp; Artist Representative</p>
+          <p class="entry-desc">Represent Mark's work to museums and private collectors. Oversee all video production, branding, and communications strategy to support sales and placement.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="sidebar">
+
+      <div class="section">
+        <p class="section-label">Skills</p>
+
+        <div class="skill-group">
+          <p class="skill-group-label">Adobe Suite</p>
+          <div class="skill-tags">
+            <span class="tag">Premiere Pro</span>
+            <span class="tag">After Effects</span>
+            <span class="tag">Photoshop</span>
+            <span class="tag">Illustrator</span>
+            <span class="tag">Lightroom</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <p class="skill-group-label">Avid</p>
+          <div class="skill-tags">
+            <span class="tag">Media Composer</span>
+            <span class="tag">Pro Tools</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <p class="skill-group-label">Color &amp; Production</p>
+          <div class="skill-tags">
+            <span class="tag">DaVinci Resolve</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <p class="skill-group-label">Microsoft Office</p>
+          <div class="skill-tags">
+            <span class="tag">Word</span>
+            <span class="tag">Excel</span>
+            <span class="tag">PowerPoint</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <p class="section-label">Education &amp; Training</p>
+        <div class="entry">
+          <p class="entry-title">Gifted &amp; Talented Arts Program</p>
+          <p class="entry-meta">4th Grade – High School Graduation &nbsp;·&nbsp; 9 Years</p>
+          <p class="entry-desc">Intensive visual arts curriculum spanning drawing, painting, design, and mixed media throughout K–12.</p>
+        </div>
+      </div>
+
+      <div class="section">
+        <p class="section-label">Other Experience</p>
+
+        <div class="entry">
+          <p class="entry-title">Lead Instructor</p>
+          <p class="entry-meta">EEI Creative Arts &nbsp;·&nbsp; 2021–Present</p>
+          <p class="entry-desc">Media production instruction alongside industry veterans at a Hollywood film school. Developed the media production curriculum.</p>
+        </div>
+
+        <div class="entry">
+          <p class="entry-title">Instructor</p>
+          <p class="entry-meta">MBC Academy, Saudi Arabia &nbsp;·&nbsp; 2021–2022</p>
+          <p class="entry-desc">Taught media production and short film editing to 75+ Arabic students per class. Workshops drew 200+ attendees.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
