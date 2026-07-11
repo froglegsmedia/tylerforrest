@@ -128,7 +128,8 @@
   .contact-links{display:flex;gap:16px;flex-wrap:wrap;}
   .cbtn{background:var(--rust);color:var(--paper);padding:18px 30px;border-radius:100px;font-size:14px;letter-spacing:0.06em;text-transform:uppercase;font-weight:500;display:inline-flex;align-items:center;gap:10px;}
   .cbtn:hover{background:var(--paper);color:var(--ink);}
-  .social-icons{display:flex;gap:14px;flex-wrap:wrap;margin-top:22px;}
+  .social-icons{display:flex;gap:14px;flex-wrap:wrap;margin-top:22px;justify-content:center;}
+  .icon-btn.imdb-icon{font-family:'Clash Display',sans-serif;font-weight:700;font-size:12px;letter-spacing:-0.02em;}
   .icon-btn{width:50px;height:50px;border-radius:50%;background:var(--rust);color:var(--paper);display:inline-flex;align-items:center;justify-content:center;transition:background .2s,color .2s,transform .2s;}
   .icon-btn:hover{background:var(--paper);color:var(--ink);transform:translateY(-3px);}
   .icon-btn svg{width:22px;height:22px;fill:currentColor;}
@@ -365,11 +366,11 @@
   <div class="container">
     <div class="kicker">Get In Touch</div>
     <h2>Let's<br>Work</h2>
-    <div class="contact-links">
+    <div class="contact-links" style="justify-content:center;">
       <a class="cbtn" href="mailto:tyler@tylerforrest.com">tyler@tylerforrest.com</a>
-      <a class="cbtn" href="https://www.imdb.com/name/nm4731168/" target="_blank" rel="noopener">IMDb</a>
     </div>
     <div class="social-icons">
+      <a class="icon-btn imdb-icon" href="https://www.imdb.com/name/nm4731168/" target="_blank" rel="noopener" aria-label="IMDb">IMDb</a>
       <a class="icon-btn" href="https://www.youtube.com/@tylerforrest" target="_blank" rel="noopener" aria-label="YouTube">
         <svg viewBox="0 0 24 24"><path d="M23.5 6.2c-.3-1.1-1.1-1.9-2.2-2.2C19.4 3.5 12 3.5 12 3.5s-7.4 0-9.3.5c-1.1.3-1.9 1.1-2.2 2.2C0 8.1 0 12 0 12s0 3.9.5 5.8c.3 1.1 1.1 1.9 2.2 2.2 1.9.5 9.3.5 9.3.5s7.4 0 9.3-.5c1.1-.3 1.9-1.1 2.2-2.2.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.5V8.5l6.4 3.5-6.4 3.5z"/></svg>
       </a>
