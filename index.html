@@ -55,20 +55,19 @@
   .poster-wall{display:grid;grid-template-columns:repeat(6,1fr);gap:0;width:100%;}
   @media (max-width:900px){.poster-wall{grid-template-columns:repeat(3,1fr);}}
   @media (max-width:560px){.poster-wall{grid-template-columns:repeat(2,1fr);}}
-  .poster-tile{position:relative;aspect-ratio:2/3;overflow:hidden;background:var(--ink);}
+  .poster-tile{position:relative;aspect-ratio:2/3;overflow:hidden;background:var(--ink);cursor:pointer;}
   .poster-tile:nth-child(even){background:var(--rust);}
   .poster-tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;}
   .tile-num{position:absolute;top:16px;left:16px;font-family:'Clash Display',sans-serif;font-weight:700;font-size:15px;color:var(--paper);opacity:.85;z-index:2;}
   .poster-tile:nth-child(even) .tile-num{color:var(--ink);}
   .tile-mark{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Clash Display',sans-serif;font-weight:700;font-size:clamp(60px,9vw,120px);color:rgba(244,236,218,0.14);}
   .poster-tile:nth-child(even) .tile-mark{color:rgba(67,16,22,0.14);}
-  .tile-scrim{position:absolute;left:0;right:0;bottom:0;padding:16px 16px 14px;background:linear-gradient(to top, rgba(0,0,0,0.75), transparent);transform:translateY(0);transition:transform .3s ease, background .3s ease;z-index:2;}
+  .tile-scrim{position:absolute;left:0;right:0;bottom:0;padding:16px 16px 14px;background:linear-gradient(to top, rgba(0,0,0,0.75), transparent);transition:background .3s ease;z-index:2;}
   .tile-scrim h3{font-size:clamp(15px,1.6vw,19px);color:var(--paper);margin-bottom:2px;}
-  .tile-scrim .tag{font-size:10px;letter-spacing:0.06em;text-transform:uppercase;color:rgba(244,236,218,0.7);margin-bottom:10px;}
-  .tile-links{display:flex;gap:8px;flex-wrap:wrap;max-height:0;overflow:hidden;transition:max-height .3s ease;}
-  .poster-tile:hover .tile-links{max-height:60px;}
-  .tile-links a{font-size:10px;letter-spacing:0.05em;text-transform:uppercase;color:var(--paper);border:1px solid rgba(244,236,218,0.6);padding:5px 10px;border-radius:100px;white-space:nowrap;}
-  .tile-links a:hover{background:var(--paper);color:var(--ink);border-color:var(--paper);}
+  .tile-scrim .tag{font-size:10px;letter-spacing:0.06em;text-transform:uppercase;color:rgba(244,236,218,0.7);}
+  .poster-tile img{transition:transform .4s ease;}
+  .poster-tile:hover img{transform:scale(1.05);}
+  .poster-tile:hover .tile-scrim{background:linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0.15));}
   section{padding:110px 0;}
   .kicker{display:flex;align-items:center;gap:14px;color:var(--dim);font-size:13px;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:20px;}
   .kicker::before{content:"";width:34px;height:2px;background:var(--rust);}
@@ -166,73 +165,54 @@
     <div class="id-roles">Composer <em>&bull;</em> Producer <em>&bull;</em> Artist <em>&bull;</em> Filmmaker</div>
   </div>
   <div class="poster-wall">
-    <div class="poster-tile" data-poster-slot="the-dirty-south">
+    <a class="poster-tile" data-poster-slot="the-dirty-south" href="https://www.imdb.com/title/tt24223026/" target="_blank" rel="noopener">
       <img src="images/the-dirty-south.jpg" alt="The Dirty South poster">
       <span class="tile-num">01</span>
       <div class="tile-scrim">
         <h3>The Dirty South</h3>
         <div class="tag">Feature Film</div>
-        <div class="tile-links">
-          <a href="https://www.imdb.com/title/tt24223026/" target="_blank" rel="noopener">IMDb</a>
-        </div>
       </div>
-    </div>
-    <div class="poster-tile" data-poster-slot="search-and-destroy">
+    </a>
+    <a class="poster-tile" data-poster-slot="search-and-destroy" href="https://www.imdb.com/title/tt11791146/" target="_blank" rel="noopener">
       <img src="images/search-and-destroy.jpg" alt="Search and Destroy poster">
       <span class="tile-num">02</span>
       <div class="tile-scrim">
         <h3>Search and Destroy</h3>
         <div class="tag">Feature Film</div>
-        <div class="tile-links">
-          <a href="https://millennium-media.net/" target="_blank" rel="noopener">Millennium</a>
-          <a href="https://www.imdb.com/title/tt11791146/" target="_blank" rel="noopener">IMDb</a>
-        </div>
       </div>
-    </div>
-    <div class="poster-tile" data-poster-slot="herman">
+    </a>
+    <a class="poster-tile" data-poster-slot="herman" href="https://www.imdb.com/title/tt34938727/" target="_blank" rel="noopener">
       <img src="images/herman.jpg" alt="Herman poster">
       <span class="tile-num">03</span>
       <div class="tile-scrim">
         <h3>Herman</h3>
         <div class="tag">Feature Film</div>
-        <div class="tile-links">
-          <a href="https://www.imdb.com/title/tt34938727/" target="_blank" rel="noopener">IMDb</a>
-        </div>
       </div>
-    </div>
-    <div class="poster-tile" data-poster-slot="strings">
+    </a>
+    <a class="poster-tile" data-poster-slot="strings" href="https://www.imdb.com/title/tt6833084/" target="_blank" rel="noopener">
       <img src="images/strings.jpg" alt="Strings poster">
       <span class="tile-num">04</span>
       <div class="tile-scrim">
         <h3>Strings</h3>
         <div class="tag">Feature Film</div>
-        <div class="tile-links">
-          <a href="https://www.imdb.com/title/tt6833084/" target="_blank" rel="noopener">IMDb</a>
-        </div>
       </div>
-    </div>
-    <div class="poster-tile" data-poster-slot="on-her-way-home">
+    </a>
+    <a class="poster-tile" data-poster-slot="on-her-way-home" href="https://www.imdb.com/title/tt38590421/" target="_blank" rel="noopener">
       <img src="images/on-her-way-home.jpg" alt="On Her Way Home poster">
       <span class="tile-num">05</span>
       <div class="tile-scrim">
         <h3>On Her Way Home</h3>
         <div class="tag">Short Film</div>
-        <div class="tile-links">
-          <a href="https://www.imdb.com/title/tt38590421/" target="_blank" rel="noopener">IMDb</a>
-        </div>
       </div>
-    </div>
-    <div class="poster-tile" data-poster-slot="suicide-disco">
+    </a>
+    <a class="poster-tile" data-poster-slot="suicide-disco" href="https://www.suicidediscomovie.com/" target="_blank" rel="noopener">
       <img src="images/suicide-disco.jpg" alt="Suicide Disco poster">
       <span class="tile-num">06</span>
       <div class="tile-scrim">
         <h3>Suicide Disco</h3>
         <div class="tag">Feature Film</div>
-        <div class="tile-links">
-          <a href="https://www.suicidediscomovie.com/" target="_blank" rel="noopener">Website</a>
-        </div>
       </div>
-    </div>
+    </a>
   </div>
 </section>
 
@@ -323,7 +303,7 @@
         </div>
       </div>
     </div>
-    <a class="listen-btn" href="catalog.html">Full Catalog &mdash; By Request Only</a>
+    <a class="listen-btn" href="catalog.html">Full Catalog</a>
   </div>
 </section>
 
