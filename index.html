@@ -136,7 +136,7 @@
   .cbtn{background:var(--rust);color:var(--paper);padding:18px 30px;border-radius:100px;font-size:14px;letter-spacing:0.06em;text-transform:uppercase;font-weight:500;display:inline-flex;align-items:center;gap:10px;}
   .cbtn:hover{background:var(--paper);color:var(--ink);}
   .social-icons{display:flex;gap:14px;flex-wrap:wrap;margin-top:22px;justify-content:center;}
-  .footer-logo{display:block;height:38px;width:auto;margin:48px auto 0;opacity:0.9;}
+  .footer-logo{display:block;height:76px;width:auto;margin:48px auto 0;opacity:0.9;}
   .icon-btn.imdb-icon{font-family:'Clash Display',sans-serif;font-weight:700;font-size:12px;letter-spacing:-0.02em;}
   .icon-btn{width:50px;height:50px;border-radius:50%;background:var(--rust);color:var(--paper);display:inline-flex;align-items:center;justify-content:center;transition:background .2s,color .2s,transform .2s;}
   .icon-btn:hover{background:var(--paper);color:var(--ink);transform:translateY(-3px);}
@@ -432,6 +432,7 @@
     mpTitle.textContent = trackEl.dataset.title;
     mpGenre.textContent = trackEl.dataset.genre;
     miniplayer.classList.add('show');
+    document.body.style.paddingBottom = miniplayer.offsetHeight + 'px';
     var src = trackEl.dataset.src;
     if (src) {
       audio.src = src;
@@ -486,6 +487,7 @@
   mpClose.addEventListener('click', function(){
     audio.pause();
     miniplayer.classList.remove('show');
+    document.body.style.paddingBottom = '';
     tracks.forEach(function(t){ t.classList.remove('playing','open'); });
     currentTrack = null;
     setPlayingIcon(false);
