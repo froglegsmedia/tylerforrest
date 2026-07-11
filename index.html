@@ -76,10 +76,8 @@
   .sec-sub{color:var(--dim);font-size:16px;max-width:520px;margin-bottom:50px;font-weight:300;}
   .tracklist{border-top:2px solid var(--ink);}
   .track{border-bottom:2px solid var(--line);}
-  .track-head{display:grid;grid-template-columns:64px 56px 1fr auto 52px;align-items:center;gap:20px;padding:20px 0;cursor:pointer;transition:background .2s;}
+  .track-head{display:grid;grid-template-columns:56px 1fr auto 52px;align-items:center;gap:20px;padding:20px 0;cursor:pointer;transition:background .2s;}
   .track-head:hover{background:var(--paper-deep);}
-  .cover-slot{width:64px;height:64px;border:1.5px dashed var(--ink);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:9px;letter-spacing:0.06em;text-transform:uppercase;color:var(--dim);text-align:center;overflow:hidden;background:var(--paper-deep);flex-shrink:0;}
-  .cover-slot img{width:100%;height:100%;object-fit:cover;}
   .track-head .num{font-family:'Clash Display',sans-serif;font-size:16px;color:var(--dim);}
   .track-head h3{font-size:clamp(20px,3.2vw,30px);font-weight:500;}
   .track-head .genre{font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:var(--rust);white-space:nowrap;}
@@ -93,7 +91,6 @@
   .listen-btn:hover{background:var(--rust);}
   @media (max-width:640px){
     .track-head{grid-template-columns:44px 1fr 40px;}
-    .cover-slot{display:none;}
     .track-head .genre{grid-column:2;justify-self:start;margin-top:4px;}
   }
   .miniplayer{position:fixed;left:0;right:0;bottom:0;z-index:180;background:var(--ink);color:var(--paper);transform:translateY(100%);transition:transform .4s cubic-bezier(.2,.8,.2,1);}
@@ -242,7 +239,6 @@
     <div class="tracklist">
       <div class="track" data-title="Get the Gold" data-genre="Rowdy Hop" data-src="">
         <div class="track-head" data-toggle>
-          <div class="cover-slot" data-cover-slot>Cover Art</div>
           <span class="num">01</span>
           <h3>Get the Gold</h3>
           <span class="genre">Rowdy Hop &#128293;</span>
@@ -251,7 +247,6 @@
       </div>
       <div class="track" data-title="Saddle Up" data-genre="Rowdy Hop" data-src="">
         <div class="track-head" data-toggle>
-          <div class="cover-slot" data-cover-slot>Cover Art</div>
           <span class="num">02</span>
           <h3>Saddle Up</h3>
           <span class="genre">Rowdy Hop &#128293;</span>
@@ -260,7 +255,6 @@
       </div>
       <div class="track" data-title="Steppin'" data-genre="Damn We Dope" data-src="">
         <div class="track-head" data-toggle>
-          <div class="cover-slot" data-cover-slot>Cover Art</div>
           <span class="num">03</span>
           <h3>Steppin'</h3>
           <span class="genre">Damn We Dope &#128293;</span>
@@ -269,7 +263,6 @@
       </div>
       <div class="track" data-title="Love Sick" data-genre="Say Don't Play" data-src="">
         <div class="track-head" data-toggle>
-          <div class="cover-slot" data-cover-slot>Cover Art</div>
           <span class="num">04</span>
           <h3>Love Sick</h3>
           <span class="genre">Say Don't Play &#128293;</span>
@@ -278,7 +271,6 @@
       </div>
       <div class="track" data-title="Fixing Myself" data-genre="Rowdy Hop" data-src="">
         <div class="track-head" data-toggle>
-          <div class="cover-slot" data-cover-slot>Cover Art</div>
           <span class="num">05</span>
           <h3>Fixing Myself</h3>
           <span class="genre">Rowdy Hop &#128293;</span>
@@ -287,7 +279,6 @@
       </div>
       <div class="track" data-title="All Roads End Here" data-genre="Mark A.M." data-src="">
         <div class="track-head" data-toggle>
-          <div class="cover-slot" data-cover-slot>Cover Art</div>
           <span class="num">06</span>
           <h3>All Roads End Here</h3>
           <span class="genre">Mark A.M. &#128293;</span>
@@ -296,7 +287,6 @@
       </div>
       <div class="track" data-title="County Mess Express" data-genre="Rowdy Hop & Pony Tale" data-src="">
         <div class="track-head" data-toggle>
-          <div class="cover-slot" data-cover-slot>Cover Art</div>
           <span class="num">07</span>
           <h3>County Mess Express</h3>
           <span class="genre">Rowdy Hop &amp; Pony Tale &#128293;</span>
@@ -305,7 +295,6 @@
       </div>
       <div class="track" data-title="Hometown" data-genre="Rowdy Hop & Pony Tale" data-src="">
         <div class="track-head" data-toggle>
-          <div class="cover-slot" data-cover-slot>Cover Art</div>
           <span class="num">08</span>
           <h3>Hometown</h3>
           <span class="genre">Rowdy Hop &amp; Pony Tale &#128293;</span>
