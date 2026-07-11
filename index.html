@@ -5,6 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tyler Forrest - Composer / Musician / Filmmaker</title>
 <meta name="description" content="Tyler Forrest - film and TV composer, music producer, artist, and filmmaker based in Los Angeles.">
+<link rel="icon" type="image/jpeg" href="favicon.jpg">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Tyler Forrest - Composer / Musician / Filmmaker">
+<meta property="og:description" content="Film and TV composer, music producer, artist, and filmmaker based in Los Angeles.">
+<meta property="og:image" content="tyler-forrest.jpg">
+<meta property="og:url" content="https://tylerforrest.com">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Tyler Forrest - Composer / Musician / Filmmaker">
+<meta name="twitter:description" content="Film and TV composer, music producer, artist, and filmmaker based in Los Angeles.">
+<meta name="twitter:image" content="tyler-forrest.jpg">
 <link rel="preconnect" href="https://api.fontshare.com">
 <link href="https://api.fontshare.com/v2/css?f[]=clash-display@700,600,500,400&f[]=general-sans@500,400,300&display=swap" rel="stylesheet">
 <style>
@@ -48,8 +58,8 @@
   .overlay-foot{margin-top:50px;display:flex;gap:32px;flex-wrap:wrap;font-size:14px;font-weight:500;text-transform:uppercase;letter-spacing:0.08em;}
   .overlay-foot a{border-bottom:2px solid var(--rust);}
   @keyframes scroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
-  .id-bar{padding:100px 32px 22px;display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:14px;}
-  .id-bar h1{font-size:clamp(30px,4.5vw,44px);color:var(--ink);}
+  .id-bar{padding:100px 32px 22px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;}
+  .id-logo{height:clamp(70px,9vw,110px);width:auto;}
   .id-roles{font-size:13px;letter-spacing:0.1em;text-transform:uppercase;color:var(--dim);}
   .id-roles em{font-style:normal;color:var(--rust);}
   .poster-wall{display:grid;grid-template-columns:repeat(6,1fr);gap:0;width:100%;}
@@ -115,6 +125,7 @@
   .sync-track span em{font-style:normal;color:var(--rust);}
   .bio-wrap{display:grid;grid-template-columns:0.8fr 1.6fr;gap:60px;margin-top:20px;}
   @media (max-width:760px){.bio-wrap{grid-template-columns:1fr;}}
+  .bio-photo{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:10px;margin-bottom:28px;background:var(--paper-deep);}
   .bio-facts dt{font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--rust);margin-top:20px;}
   .bio-facts dt:first-child{margin-top:0;}
   .bio-facts dd{color:var(--dim);font-size:16px;margin-bottom:4px;}
@@ -161,7 +172,7 @@
 
 <section id="top">
   <div class="id-bar">
-    <h1>Tyler Forrest</h1>
+    <img src="logo.png" alt="Tyler Forrest" class="id-logo">
     <div class="id-roles">Composer <em>&bull;</em> Producer <em>&bull;</em> Artist <em>&bull;</em> Filmmaker</div>
   </div>
   <div class="poster-wall">
@@ -325,12 +336,16 @@
     <div class="kicker">About</div>
     <h2 class="sec-title">Bio</h2>
     <div class="bio-wrap">
-      <dl class="bio-facts">
-        <dt>Based In</dt><dd>Los Angeles, CA</dd>
-        <dt>From</dt><dd>Abita Springs, LA</dd>
-        <dt>Instruments</dt><dd>Guitar, Piano, Drums, Voice</dd>
-        <dt>Roles</dt><dd>Composer, Producer, Artist, Filmmaker</dd>
-      </dl>
+      <div class="bio-side">
+        <img src="tyler-forrest.jpg" alt="Tyler Forrest" class="bio-photo">
+        <dl class="bio-facts">
+          <dt>Based In</dt><dd>Los Angeles, CA</dd>
+          <dt>From</dt><dd>Abita Springs, LA</dd>
+          <dt>Instruments</dt><dd>Guitar, Piano, Drums, Voice</dd>
+          <dt>Roles</dt><dd>Composer, Producer, Artist, Filmmaker</dd>
+          <dt>IMDb</dt><dd><a href="https://www.imdb.com/find/?q=Tyler%20Forrest" target="_blank" rel="noopener" style="color:var(--ink);border-bottom:2px solid var(--rust);">Tyler Forrest</a></dd>
+        </dl>
+      </div>
       <div class="bio-body">
         <p>Tyler Forrest is a composer, music producer, artist, and filmmaker originally from Abita Springs, Louisiana, now based in Los Angeles. A multi-instrumentalist on guitar, piano, drums, and voice, he spent eight years hosting JamNation, a residency at the Rainbow Bar &amp; Grill and Universal Bar &amp; Grill &mdash; the experience that led to his first composing role, scoring <em>Search and Destroy</em> with Millennium Films.</p>
         <p>As a music artist, Tyler is known as <em>Rowdy Hop</em> &mdash; a country crossover sound spanning country, hip hop, and rock. His music has been placed with MTV, CBS, The CW, Barefoot Wine, Starbucks, and TikTok Shop.</p>
