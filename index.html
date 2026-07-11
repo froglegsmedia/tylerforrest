@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tyler Forrest - Composer / Musician / Filmmaker</title>
+<meta name="description" content="Tyler Forrest - film and TV composer, music producer, artist, and filmmaker based in Los Angeles.">
+<link rel="preconnect" href="https://api.fontshare.com">
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@700,600,500,400&f[]=general-sans@500,400,300&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f4ecda;
+    --paper-deep:#e9dcbe;
+    --ink:#431016;
+    --ink-2:#5c1720;
+    --rust:#c1602c;
+    --line:rgba(67,16,22,0.18);
+    --dim:#8a6f63;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--paper);color:var(--ink);font-family:'General Sans',sans-serif;font-weight:400;overflow-x:hidden;}
+  h1,h2,h3,.display{font-family:'Clash Display',sans-serif;font-weight:600;letter-spacing:-0.01em;line-height:0.98;}
+  a{color:inherit;text-decoration:none;}
+  ::selection{background:var(--rust);color:var(--paper);}
+  .container{max-width:1180px;margin:0 auto;padding:0 32px;}
+  @media (max-width:640px){.container{padding:0 20px;}}
+  .topbar{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:22px 32px;mix-blend-mode:multiply;}
+  @media (max-width:640px){.topbar{padding:18px 20px;}}
+  .word{font-family:'Clash Display',sans-serif;font-weight:600;font-size:18px;letter-spacing:-0.01em;color:var(--ink);}
+  .menu-btn{display:flex;align-items:center;gap:10px;background:none;border:none;color:var(--ink);font-family:'General Sans',sans-serif;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;cursor:pointer;}
+  .menu-btn .bars{width:26px;height:16px;position:relative;}
+  .menu-btn .bars span{position:absolute;left:0;width:100%;height:2px;background:var(--ink);transition:transform .3s ease, opacity .3s ease, top .3s ease;}
+  .menu-btn .bars span:nth-child(1){top:0;}
+  .menu-btn .bars span:nth-child(2){top:7px;}
+  .menu-btn .bars span:nth-child(3){top:14px;}
+  body.nav-open .menu-btn .bars span:nth-child(1){top:7px;transform:rotate(45deg);}
+  body.nav-open .menu-btn .bars span:nth-child(2){opacity:0;}
+  body.nav-open .menu-btn .bars span:nth-child(3){top:7px;transform:rotate(-45deg);}
+  .overlay{position:fixed;inset:0;z-index:150;background:var(--ink);color:var(--paper);display:flex;flex-direction:column;justify-content:center;padding:120px 40px 60px;transform:translateY(-100%);transition:transform .55s cubic-bezier(.77,0,.18,1);}
+  body.nav-open .overlay{transform:translateY(0);}
+  .overlay-links{list-style:none;}
+  .overlay-links li{border-top:2px solid rgba(244,236,218,0.25);}
+  .overlay-links li:last-child{border-bottom:2px solid rgba(244,236,218,0.25);}
+  .overlay-links a{display:flex;align-items:baseline;gap:20px;font-family:'Clash Display',sans-serif;font-weight:600;font-size:clamp(32px,7vw,64px);padding:14px 0;transition:padding-left .3s ease, color .3s;}
+  .overlay-links a:hover{padding-left:24px;color:var(--rust);}
+  .overlay-links .idx{font-size:16px;font-family:'General Sans',sans-serif;font-weight:500;opacity:.6;}
+  .overlay-foot{margin-top:50px;display:flex;gap:32px;flex-wrap:wrap;font-size:14px;font-weight:500;text-transform:uppercase;letter-spacing:0.08em;}
+  .overlay-foot a{border-bottom:2px solid var(--rust);}
+  @keyframes scroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+  .id-bar{padding:100px 32px 22px;display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:14px;}
+  .id-bar h1{font-size:clamp(30px,4.5vw,44px);color:var(--ink);}
+  .id-roles{font-size:13px;letter-spacing:0.1em;text-transform:uppercase;color:var(--dim);}
+  .id-roles em{font-style:normal;color:var(--rust);}
+  .poster-wall{display:grid;grid-template-columns:repeat(6,1fr);gap:0;width:100%;}
+  @media (max-width:900px){.poster-wall{grid-template-columns:repeat(3,1fr);}}
+  @media (max-width:560px){.poster-wall{grid-template-columns:repeat(2,1fr);}}
+  .poster-tile{position:relative;aspect-ratio:2/3;overflow:hidden;background:var(--ink);}
+  .poster-tile:nth-child(even){background:var(--rust);}
+  .poster-tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;}
+  .tile-num{position:absolute;top:16px;left:16px;font-family:'Clash Display',sans-serif;font-weight:700;font-size:15px;color:var(--paper);opacity:.85;z-index:2;}
+  .poster-tile:nth-child(even) .tile-num{color:var(--ink);}
+  .tile-mark{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Clash Display',sans-serif;font-weight:700;font-size:clamp(60px,9vw,120px);color:rgba(244,236,218,0.14);}
+  .poster-tile:nth-child(even) .tile-mark{color:rgba(67,16,22,0.14);}
+  .tile-scrim{position:absolute;left:0;right:0;bottom:0;padding:16px 16px 14px;background:linear-gradient(to top, rgba(0,0,0,0.75), transparent);transform:translateY(0);transition:transform .3s ease, background .3s ease;z-index:2;}
+  .tile-scrim h3{font-size:clamp(15px,1.6vw,19px);color:var(--paper);margin-bottom:2px;}
+  .tile-scrim .tag{font-size:10px;letter-spacing:0.06em;text-transform:uppercase;color:rgba(244,236,218,0.7);margin-bottom:10px;}
+  .tile-links{display:flex;gap:8px;flex-wrap:wrap;max-height:0;overflow:hidden;transition:max-height .3s ease;}
+  .poster-tile:hover .tile-links{max-height:60px;}
+  .tile-links a{font-size:10px;letter-spacing:0.05em;text-transform:uppercase;color:var(--paper);border:1px solid rgba(244,236,218,0.6);padding:5px 10px;border-radius:100px;white-space:nowrap;}
+  .tile-links a:hover{background:var(--paper);color:var(--ink);border-color:var(--paper);}
+  section{padding:110px 0;}
+  .kicker{display:flex;align-items:center;gap:14px;color:var(--dim);font-size:13px;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:20px;}
+  .kicker::before{content:"";width:34px;height:2px;background:var(--rust);}
+  .sec-title{font-size:clamp(38px,7vw,74px);margin-bottom:20px;}
+  .sec-sub{color:var(--dim);font-size:16px;max-width:520px;margin-bottom:50px;font-weight:300;}
+  .tracklist{border-top:2px solid var(--ink);}
+  .track{border-bottom:2px solid var(--line);}
+  .track-head{display:grid;grid-template-columns:64px 56px 1fr auto 52px;align-items:center;gap:20px;padding:20px 0;cursor:pointer;transition:background .2s;}
+  .track-head:hover{background:var(--paper-deep);}
+  .cover-slot{width:64px;height:64px;border:1.5px dashed var(--ink);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:9px;letter-spacing:0.06em;text-transform:uppercase;color:var(--dim);text-align:center;overflow:hidden;background:var(--paper-deep);flex-shrink:0;}
+  .cover-slot img{width:100%;height:100%;object-fit:cover;}
+  .track-head .num{font-family:'Clash Display',sans-serif;font-size:16px;color:var(--dim);}
+  .track-head h3{font-size:clamp(20px,3.2vw,30px);font-weight:500;}
+  .track-head .genre{font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:var(--rust);white-space:nowrap;}
+  .play-icon{width:44px;height:44px;border-radius:50%;border:2px solid var(--ink);display:flex;align-items:center;justify-content:center;transition:background .25s, transform .25s, border-color .25s;flex-shrink:0;}
+  .play-icon::before{content:"";border-style:solid;border-width:7px 0 7px 11px;border-color:transparent transparent transparent var(--ink);margin-left:3px;transition:border-color .25s;}
+  .track-head:hover .play-icon{background:var(--rust);border-color:var(--rust);transform:scale(1.08);}
+  .track-head:hover .play-icon::before{border-left-color:var(--paper);}
+  .track.playing .play-icon{background:var(--ink);border-color:var(--ink);}
+  .track.playing .play-icon::before{border-style:none;width:4px;height:14px;border-left:4px solid var(--paper);border-right:4px solid var(--paper);margin-left:0;}
+  .listen-btn{display:inline-flex;font-size:13px;letter-spacing:0.06em;text-transform:uppercase;font-weight:500;color:var(--paper);background:var(--ink);padding:14px 28px;border-radius:100px;margin-top:36px;}
+  .listen-btn:hover{background:var(--rust);}
+  @media (max-width:640px){
+    .track-head{grid-template-columns:44px 1fr 40px;}
+    .cover-slot{display:none;}
+    .track-head .genre{grid-column:2;justify-self:start;margin-top:4px;}
+  }
+  .miniplayer{position:fixed;left:0;right:0;bottom:0;z-index:180;background:var(--ink);color:var(--paper);transform:translateY(100%);transition:transform .4s cubic-bezier(.2,.8,.2,1);}
+  .miniplayer.show{transform:translateY(0);}
+  .mp-inner{max-width:1180px;margin:0 auto;padding:14px 32px;display:flex;align-items:center;gap:18px;}
+  .mp-cover{width:44px;height:44px;border-radius:6px;background:var(--paper-deep);flex-shrink:0;overflow:hidden;}
+  .mp-cover img{width:100%;height:100%;object-fit:cover;}
+  .mp-meta{flex-shrink:0;min-width:0;}
+  .mp-meta .t{font-family:'Clash Display',sans-serif;font-size:16px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .mp-meta .g{font-size:11px;color:var(--rust);text-transform:uppercase;letter-spacing:0.06em;}
+  .mp-toggle{width:38px;height:38px;border-radius:50%;background:var(--rust);border:none;flex-shrink:0;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+  .mp-toggle .ico-play{border-style:solid;border-width:6px 0 6px 10px;border-color:transparent transparent transparent var(--ink);margin-left:2px;}
+  .mp-toggle .ico-pause{width:4px;height:12px;border-left:4px solid var(--ink);border-right:4px solid var(--ink);}
+  .mp-bar{flex:1;height:4px;background:rgba(244,236,218,0.25);border-radius:4px;overflow:hidden;cursor:pointer;}
+  .mp-bar-fill{height:100%;width:0%;background:var(--rust);}
+  .mp-note{font-size:11px;color:var(--dim);white-space:nowrap;}
+  .mp-close{background:none;border:none;color:var(--paper);font-size:20px;cursor:pointer;opacity:.6;flex-shrink:0;}
+  .mp-close:hover{opacity:1;}
+  @media (max-width:640px){.mp-meta{display:none;}}
+  .sync-strip{background:var(--ink);border-top:2px solid var(--ink);border-bottom:2px solid var(--ink);overflow:hidden;white-space:nowrap;padding:34px 0;}
+  .sync-track{display:inline-flex;animation:scroll 20s linear infinite reverse;}
+  .sync-track span{font-family:'Clash Display',sans-serif;font-weight:600;font-size:clamp(26px,5vw,48px);color:var(--paper);padding:0 40px;display:inline-flex;align-items:center;gap:40px;}
+  .sync-track span em{font-style:normal;color:var(--rust);}
+  .bio-wrap{display:grid;grid-template-columns:0.8fr 1.6fr;gap:60px;margin-top:20px;}
+  @media (max-width:760px){.bio-wrap{grid-template-columns:1fr;}}
+  .bio-facts dt{font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--rust);margin-top:20px;}
+  .bio-facts dt:first-child{margin-top:0;}
+  .bio-facts dd{color:var(--dim);font-size:16px;margin-bottom:4px;}
+  .bio-body p{margin-bottom:22px;font-size:19px;line-height:1.65;font-weight:300;}
+  .bio-body em{color:var(--ink);font-style:normal;font-weight:600;border-bottom:2px solid var(--rust);}
+  .contact-block{background:var(--ink);color:var(--paper);padding:100px 0;}
+  .contact-block .kicker{color:rgba(244,236,218,0.55);}
+  .contact-block .kicker::before{background:var(--rust);}
+  .contact-block h2{font-size:clamp(42px,9vw,100px);margin-bottom:50px;}
+  .contact-links{display:flex;gap:16px;flex-wrap:wrap;}
+  .cbtn{background:var(--rust);color:var(--paper);padding:18px 30px;border-radius:100px;font-size:14px;letter-spacing:0.06em;text-transform:uppercase;font-weight:500;display:inline-flex;align-items:center;gap:10px;}
+  .cbtn:hover{background:var(--paper);color:var(--ink);}
+  footer{padding:100px 0 28px;text-align:center;color:var(--dim);font-size:12px;letter-spacing:0.06em;text-transform:uppercase;}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <a href="#top" class="word">Tyler Forrest</a>
+  <button class="menu-btn" id="navToggle">
+    <span id="menuLabel">Menu</span>
+    <span class="bars"><span></span><span></span><span></span></span>
+  </button>
+</div>
+
+<div class="overlay" id="overlay">
+  <ul class="overlay-links">
+    <li><a href="#top"><span class="idx">01</span>Credits</a></li>
+    <li><a href="#music"><span class="idx">02</span>Music</a></li>
+    <li><a href="#sync"><span class="idx">03</span>Sync</a></li>
+    <li><a href="#bio"><span class="idx">04</span>Bio</a></li>
+    <li><a href="#contact"><span class="idx">05</span>Contact</a></li>
+  </ul>
+  <div class="overlay-foot">
+    <a href="https://s.disco.ac/lweeruhgcrdd" target="_blank" rel="noopener">Disco Playlist</a>
+    <a href="mailto:tyler@tylerforrest.com">tyler@tylerforrest.com</a>
+  </div>
+</div>
+
+<section id="top">
+  <div class="id-bar">
+    <h1>Tyler Forrest</h1>
+    <div class="id-roles">Composer <em>&bull;</em> Producer <em>&bull;</em> Artist <em>&bull;</em> Filmmaker</div>
+  </div>
+  <div class="poster-wall">
+    <div class="poster-tile" data-poster-slot="the-dirty-south">
+      <img src="images/the-dirty-south.jpg" alt="The Dirty South poster">
+      <span class="tile-num">01</span>
+      <div class="tile-scrim">
+        <h3>The Dirty South</h3>
+        <div class="tag">Score &amp; Soundtrack</div>
+        <div class="tile-links">
+          <a href="https://www.imdb.com/find/?q=The%20Dirty%20South%20Tyler%20Forrest" target="_blank" rel="noopener">IMDb</a>
+        </div>
+      </div>
+    </div>
+    <div class="poster-tile" data-poster-slot="search-and-destroy">
+      <img src="images/search-and-destroy.jfif" alt="Search and Destroy poster">
+      <span class="tile-num">02</span>
+      <div class="tile-scrim">
+        <h3>Search and Destroy</h3>
+        <div class="tag">Millennium Films &mdash; Debut Score</div>
+        <div class="tile-links">
+          <a href="https://millennium-media.net/" target="_blank" rel="noopener">Millennium</a>
+          <a href="https://www.imdb.com/find/?q=Search%20and%20Destroy%20Millennium%20Films" target="_blank" rel="noopener">IMDb</a>
+        </div>
+      </div>
+    </div>
+    <div class="poster-tile" data-poster-slot="herman">
+      <img src="images/herman.jpg" alt="Herman poster">
+      <span class="tile-num">03</span>
+      <div class="tile-scrim">
+        <h3>Herman</h3>
+        <div class="tag">Feature Film</div>
+        <div class="tile-links">
+          <a href="https://www.imdb.com/find/?q=Herman%20Tyler%20Forrest" target="_blank" rel="noopener">IMDb</a>
+        </div>
+      </div>
+    </div>
+    <div class="poster-tile" data-poster-slot="strings">
+      <img src="images/strings.jpg" alt="Strings poster">
+      <span class="tile-num">04</span>
+      <div class="tile-scrim">
+        <h3>Strings</h3>
+        <div class="tag">Feature Film</div>
+        <div class="tile-links">
+          <a href="https://www.imdb.com/find/?q=Strings%20Tyler%20Forrest" target="_blank" rel="noopener">IMDb</a>
+        </div>
+      </div>
+    </div>
+    <div class="poster-tile" data-poster-slot="on-her-way-home">
+      <span class="tile-num">05</span>
+      <span class="tile-mark">TF</span>
+      <div class="tile-scrim">
+        <h3>On Her Way Home</h3>
+        <div class="tag">Short Film</div>
+        <div class="tile-links">
+          <a href="https://www.imdb.com/find/?q=On%20Her%20Way%20Home%20Tyler%20Forrest" target="_blank" rel="noopener">IMDb</a>
+        </div>
+      </div>
+    </div>
+    <div class="poster-tile" data-poster-slot="suicide-disco">
+      <span class="tile-num">06</span>
+      <span class="tile-mark">TF</span>
+      <div class="tile-scrim">
+        <h3>Suicide Disco</h3>
+        <div class="tag">Feature Film</div>
+        <div class="tile-links">
+          <a href="https://www.imdb.com/find/?q=Suicide%20Disco%20Tyler%20Forrest" target="_blank" rel="noopener">IMDb</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="music">
+  <div class="container">
+    <div class="kicker">&#128293; Listen Now</div>
+    <h2 class="sec-title">Hot Right Now</h2>
+    <p class="sec-sub">Straight from the studio. Hit play and see what's popping.</p>
+    <div class="tracklist">
+      <div class="track" data-title="Rowdy Hop" data-genre="Country / Crossover" data-src="">
+        <div class="track-head" data-toggle>
+          <div class="cover-slot" data-cover-slot>Cover Art</div>
+          <span class="num">01</span>
+          <h3>Rowdy Hop</h3>
+          <span class="genre">Country / Crossover &#128293;</span>
+          <span class="play-icon"></span>
+        </div>
+      </div>
+      <div class="track" data-title="Damn We Dope" data-genre="Hip Hop" data-src="">
+        <div class="track-head" data-toggle>
+          <div class="cover-slot" data-cover-slot>Cover Art</div>
+          <span class="num">02</span>
+          <h3>Damn We Dope</h3>
+          <span class="genre">Hip Hop &#128293;</span>
+          <span class="play-icon"></span>
+        </div>
+      </div>
+      <div class="track" data-title="Tyler Forrest" data-genre="Americana" data-src="">
+        <div class="track-head" data-toggle>
+          <div class="cover-slot" data-cover-slot>Cover Art</div>
+          <span class="num">03</span>
+          <h3>Tyler Forrest</h3>
+          <span class="genre">Americana &#128293;</span>
+          <span class="play-icon"></span>
+        </div>
+      </div>
+      <div class="track" data-title="Say Don't Play" data-genre="Pop Rock" data-src="">
+        <div class="track-head" data-toggle>
+          <div class="cover-slot" data-cover-slot>Cover Art</div>
+          <span class="num">04</span>
+          <h3>Say Don't Play</h3>
+          <span class="genre">Pop Rock &#128293;</span>
+          <span class="play-icon"></span>
+        </div>
+      </div>
+    </div>
+    <a class="listen-btn" href="catalog.html">Full Catalog &mdash; By Request Only</a>
+  </div>
+</section>
+
+<section id="sync" style="padding:0;">
+  <div class="container" style="padding-top:110px;padding-bottom:0;">
+    <div class="kicker">Placements</div>
+    <h2 class="sec-title" style="margin-bottom:50px;">Sync</h2>
+  </div>
+  <div class="sync-strip">
+    <div class="sync-track">
+      <span><em>MTV</em> CBS <em>The CW</em> Barefoot Wine <em>Starbucks</em> TikTok Shop <em>MTV</em> CBS <em>The CW</em> Barefoot Wine <em>Starbucks</em> TikTok Shop</span>
+      <span><em>MTV</em> CBS <em>The CW</em> Barefoot Wine <em>Starbucks</em> TikTok Shop <em>MTV</em> CBS <em>The CW</em> Barefoot Wine <em>Starbucks</em> TikTok Shop</span>
+    </div>
+  </div>
+</section>
+
+<section id="bio">
+  <div class="container">
+    <div class="kicker">About</div>
+    <h2 class="sec-title">Bio</h2>
+    <div class="bio-wrap">
+      <dl class="bio-facts">
+        <dt>Based In</dt><dd>Los Angeles, CA</dd>
+        <dt>From</dt><dd>Abita Springs, LA</dd>
+        <dt>Instruments</dt><dd>Guitar, Piano, Drums</dd>
+        <dt>Roles</dt><dd>Composer, Producer, Artist, Filmmaker</dd>
+        <dt>IMDb</dt><dd><a href="https://www.imdb.com/find/?q=Tyler%20Forrest" target="_blank" rel="noopener" style="color:var(--ink);border-bottom:2px solid var(--rust);">Tyler Forrest</a></dd>
+      </dl>
+      <div class="bio-body">
+        <p>Tyler Forrest is a composer, music producer, artist, and filmmaker originally from Abita Springs, Louisiana, now based in Los Angeles. A multi-instrumentalist on guitar, piano, and drums, he spent <em>eight years</em> as part of the house band JamNation, holding down residencies at the Rainbow Bar &amp; Grill and Universal Bar &amp; Grill.</p>
+        <p>His first feature film score was <em>Search and Destroy</em>, produced with Millennium Films &mdash; the start of a scoring career that's since grown to include <em>The Dirty South</em> (score and soundtrack), <em>Herman</em>, <em>Strings</em>, the short film <em>On Her Way Home</em>, and <em>Suicide Disco</em>.</p>
+        <p>Alongside his film work, Tyler produces and performs across four distinct artist projects &mdash; Rowdy Hop, Damn We Dope, Tyler Forrest, and Say Don't Play &mdash; spanning country, hip hop, Americana, and pop rock. His music has been placed with MTV, CBS, The CW, Barefoot Wine, Starbucks, and TikTok Shop.</p>
+        <p>Tyler is also a filmmaker at <a href="https://www.scaryromantic.com" target="_blank" rel="noopener" style="color:var(--ink);border-bottom:2px solid var(--rust);">scaryromantic.com</a>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact-block">
+  <div class="container">
+    <div class="kicker">Get In Touch</div>
+    <h2>Let's<br>Work</h2>
+    <div class="contact-links">
+      <a class="cbtn" href="mailto:tyler@tylerforrest.com">tyler@tylerforrest.com</a>
+      <a class="cbtn" href="https://s.disco.ac/lweeruhgcrdd" target="_blank" rel="noopener">Disco Playlist</a>
+      <a class="cbtn" href="https://www.imdb.com/find/?q=Tyler%20Forrest" target="_blank" rel="noopener">IMDb</a>
+    </div>
+  </div>
+</section>
+
+<footer>&copy; <span id="year"></span> Tyler Forrest. All rights reserved.</footer>
+
+<div class="miniplayer" id="miniplayer">
+  <div class="mp-inner">
+    <div class="mp-cover" id="mpCover"></div>
+    <div class="mp-meta"><div class="t" id="mpTitle">&mdash;</div><div class="g" id="mpGenre">&mdash;</div></div>
+    <button class="mp-toggle" id="mpToggle"><span class="ico-play" id="mpIcon"></span></button>
+    <div class="mp-bar" id="mpBar"><div class="mp-bar-fill" id="mpBarFill"></div></div>
+    <span class="mp-note">Audio coming soon</span>
+    <button class="mp-close" id="mpClose">&times;</button>
+  </div>
+</div>
+<audio id="audioEl" preload="none"></audio>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  var body = document.body;
+  var navToggle = document.getElementById('navToggle');
+  var menuLabel = document.getElementById('menuLabel');
+  navToggle.addEventListener('click', function(){
+    body.classList.toggle('nav-open');
+    menuLabel.textContent = body.classList.contains('nav-open') ? 'Close' : 'Menu';
+  });
+  document.querySelectorAll('.overlay-links a').forEach(function(a){
+    a.addEventListener('click', function(){
+      body.classList.remove('nav-open');
+      menuLabel.textContent = 'Menu';
+    });
+  });
+
+  // ---- Playlist / mini player ----
+  var audio = document.getElementById('audioEl');
+  var miniplayer = document.getElementById('miniplayer');
+  var mpTitle = document.getElementById('mpTitle');
+  var mpGenre = document.getElementById('mpGenre');
+  var mpIcon = document.getElementById('mpIcon');
+  var mpToggle = document.getElementById('mpToggle');
+  var mpBar = document.getElementById('mpBar');
+  var mpBarFill = document.getElementById('mpBarFill');
+  var mpClose = document.getElementById('mpClose');
+  var tracks = document.querySelectorAll('.track');
+  var currentTrack = null;
+
+  function setPlayingIcon(isPlaying){
+    mpIcon.className = isPlaying ? 'ico-pause' : 'ico-play';
+  }
+
+  function openTrack(trackEl){
+    tracks.forEach(function(t){ if (t !== trackEl) t.classList.remove('playing'); });
+    currentTrack = trackEl;
+    mpTitle.textContent = trackEl.dataset.title;
+    mpGenre.textContent = trackEl.dataset.genre;
+    miniplayer.classList.add('show');
+    var src = trackEl.dataset.src;
+    if (src) {
+      audio.src = src;
+      audio.play();
+      trackEl.classList.add('playing');
+      setPlayingIcon(true);
+    } else {
+      // no audio source yet - just reflect UI state
+      trackEl.classList.add('playing');
+      setPlayingIcon(false);
+    }
+  }
+
+  tracks.forEach(function(track){
+    var head = track.querySelector('[data-toggle]');
+    head.addEventListener('click', function(){
+      if (currentTrack === track && track.classList.contains('playing')) {
+        track.classList.remove('playing');
+        if (audio.src) audio.pause();
+        setPlayingIcon(false);
+        return;
+      }
+      openTrack(track);
+    });
+  });
+
+  mpToggle.addEventListener('click', function(){
+    if (!currentTrack) return;
+    if (audio.src && !audio.paused) {
+      audio.pause();
+      currentTrack.classList.remove('playing');
+      setPlayingIcon(false);
+    } else if (audio.src) {
+      audio.play();
+      currentTrack.classList.add('playing');
+      setPlayingIcon(true);
+    }
+  });
+
+  audio.addEventListener('timeupdate', function(){
+    if (audio.duration) {
+      mpBarFill.style.width = (audio.currentTime / audio.duration * 100) + '%';
+    }
+  });
+  mpBar.addEventListener('click', function(e){
+    if (!audio.duration) return;
+    var rect = mpBar.getBoundingClientRect();
+    var pct = (e.clientX - rect.left) / rect.width;
+    audio.currentTime = pct * audio.duration;
+  });
+
+  mpClose.addEventListener('click', function(){
+    audio.pause();
+    miniplayer.classList.remove('show');
+    tracks.forEach(function(t){ t.classList.remove('playing','open'); });
+    currentTrack = null;
+    setPlayingIcon(false);
+  });
+</script>
+
+</body>
+</html>
