@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
 <title>Full Catalog - Tyler Forrest</title>
+<link rel="icon" type="image/jpeg" href="images/favicon.jpg">
 <link rel="preconnect" href="https://api.fontshare.com">
 <link href="https://api.fontshare.com/v2/css?f[]=clash-display@700,600,500,400&f[]=general-sans@500,400,300&display=swap" rel="stylesheet">
 <style>
@@ -20,13 +21,14 @@
   body{background:var(--paper);color:var(--ink);font-family:'General Sans',sans-serif;font-weight:400;min-height:100vh;}
   h1,h2,h3{font-family:'Clash Display',sans-serif;font-weight:600;letter-spacing:-0.01em;}
   a{color:inherit;text-decoration:none;}
-  .container{max-width:820px;margin:0 auto;padding:0 32px;}
+  .container{max-width:880px;margin:0 auto;padding:0 32px;}
   @media (max-width:640px){.container{padding:0 20px;}}
   .topbar{padding:26px 32px;display:flex;align-items:center;justify-content:space-between;}
   @media (max-width:640px){.topbar{padding:20px;}}
   .word{font-family:'Clash Display',sans-serif;font-weight:600;font-size:16px;}
   .back{font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:var(--dim);border-bottom:1px solid var(--line);}
   .back:hover{color:var(--rust);border-color:var(--rust);}
+
   .gate{min-height:70vh;display:flex;align-items:center;justify-content:center;padding:40px 32px;}
   .gate-card{max-width:380px;width:100%;text-align:center;}
   .gate-card .kicker{color:var(--dim);font-size:13px;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:16px;}
@@ -38,22 +40,79 @@
   .gate-form button{border:none;background:var(--ink);color:var(--paper);padding:14px 24px;border-radius:100px;font-size:13px;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;font-weight:500;}
   .gate-form button:hover{background:var(--rust);}
   .gate-error{color:var(--rust);font-size:13px;margin-top:14px;min-height:18px;}
-  .catalog{display:none;padding:20px 0 100px;}
+
+  .catalog{display:none;padding:20px 0 140px;}
   .catalog.show{display:block;}
-  .catalog-head{margin-bottom:40px;}
+  .catalog-head{margin-bottom:34px;}
   .catalog-head .kicker{color:var(--dim);font-size:13px;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:16px;}
   .catalog-head h1{font-size:clamp(34px,6vw,58px);margin-bottom:10px;}
   .catalog-head p{color:var(--dim);font-size:15px;max-width:480px;}
-  .full-tracklist{border-top:2px solid var(--ink);}
-  .ftrack{border-bottom:2px solid var(--line);display:grid;grid-template-columns:36px 1fr auto;align-items:center;gap:16px;padding:16px 0;}
-  .ftrack .num{font-family:'Clash Display',sans-serif;font-size:14px;color:var(--dim);}
-  .ftrack h3{font-size:17px;font-weight:500;}
-  .ftrack .proj{font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:var(--dim);margin-top:2px;}
-  .ftrack .genre{font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:var(--rust);white-space:nowrap;justify-self:end;}
+
+  .filters{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:36px;padding-bottom:26px;border-bottom:2px solid var(--line);}
+  .filters select{border:1.5px solid var(--ink);background:var(--paper-deep);color:var(--ink);padding:10px 16px;border-radius:100px;font-size:12px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;font-family:'General Sans',sans-serif;cursor:pointer;}
+  .filters select:focus{outline:2px solid var(--rust);outline-offset:2px;}
+  .catalog-logo{display:block;height:60px;width:auto;margin:28px auto 0;opacity:0.85;}
+  .filter-clear{border:none;background:none;font-size:12px;letter-spacing:0.06em;text-transform:uppercase;color:var(--rust);border-bottom:1px solid var(--rust);cursor:pointer;font-family:inherit;padding:0;}
+  .filter-clear:hover{color:var(--ink);border-color:var(--ink);}
+  .filter-count{margin-left:auto;font-size:12px;color:var(--dim);letter-spacing:0.04em;text-transform:uppercase;white-space:nowrap;}
+
+  .project-group{margin-bottom:18px;border-bottom:2px solid var(--line);}
+  .project-group:last-child{margin-bottom:0;}
+  .project-group-head{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:18px 0;cursor:pointer;user-select:none;}
+  .project-group-head:hover h2{color:var(--rust);}
+  .project-group-head h2{font-size:19px;transition:color .2s;}
+  .project-group-head .pg-genre{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;color:var(--paper);background:var(--rust);padding:6px 14px;border-radius:100px;}
+  .project-group-head .pg-count{font-size:12px;color:var(--dim);letter-spacing:0.04em;text-transform:uppercase;}
+  .pg-arrow{margin-left:auto;width:20px;height:20px;flex-shrink:0;color:var(--ink);transition:transform .3s ease;display:flex;align-items:center;justify-content:center;}
+  .pg-arrow svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;}
+  .project-group.open .pg-arrow{transform:rotate(180deg);}
+  .group-tracks{max-height:0;overflow:hidden;transition:max-height .45s ease;}
+  .project-group.open .group-tracks{max-height:6000px;}
+  .group-tracks .ftrack:first-child{border-top:2px solid var(--ink);}
+
+  .ftrack{border-bottom:2px solid var(--line);}
+  .track-head{display:grid;grid-template-columns:32px 1fr auto 44px;align-items:center;gap:16px;padding:16px 0;cursor:pointer;transition:background .2s;}
+  .track-head:hover{background:var(--paper-deep);}
+  .track-head .num{font-family:'Clash Display',sans-serif;font-size:13px;color:var(--dim);}
+  .track-head h3{font-size:16px;font-weight:500;}
+  .t-artist{font-size:11px;letter-spacing:0.05em;text-transform:uppercase;color:var(--dim);margin-top:2px;}
+  .t-mood{font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:var(--dim);white-space:nowrap;justify-self:end;}
+  @media (max-width:640px){.t-mood{display:none;}}
+  .play-icon{width:32px;height:32px;border-radius:50%;border:2px solid var(--ink);display:flex;align-items:center;justify-content:center;transition:background .25s, transform .25s, border-color .25s;flex-shrink:0;}
+  .play-icon::before{content:"";border-style:solid;border-width:5px 0 5px 8px;border-color:transparent transparent transparent var(--ink);margin-left:2px;transition:border-color .25s;}
+  .track-head:hover .play-icon{background:var(--rust);border-color:var(--rust);transform:scale(1.08);}
+  .track-head:hover .play-icon::before{border-left-color:var(--paper);}
+  .ftrack.playing .play-icon{background:var(--ink);border-color:var(--ink);}
+  .ftrack.playing .play-icon::before{border-style:none;width:3px;height:11px;border-left:3px solid var(--paper);border-right:3px solid var(--paper);margin-left:0;}
+
+  .empty-state{padding:60px 0;text-align:center;color:var(--dim);font-size:15px;max-width:420px;margin:0 auto;line-height:1.6;}
+
   .request-note{margin-top:56px;padding:26px;border:1.5px dashed var(--ink);border-radius:10px;background:var(--paper-deep);}
   .request-note p{font-size:14px;color:var(--dim);margin-bottom:14px;}
   .request-note a.rbtn{display:inline-flex;font-size:13px;letter-spacing:0.06em;text-transform:uppercase;font-weight:500;color:var(--paper);background:var(--ink);padding:12px 24px;border-radius:100px;}
   .request-note a.rbtn:hover{background:var(--rust);}
+
+  .social-icons{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-top:64px;}
+  .icon-btn{width:44px;height:44px;border-radius:50%;background:var(--rust);color:var(--paper);display:inline-flex;align-items:center;justify-content:center;transition:background .2s,color .2s,transform .2s;}
+  .icon-btn:hover{background:var(--ink);color:var(--paper);transform:translateY(-3px);}
+  .icon-btn svg{width:19px;height:19px;fill:currentColor;}
+  .icon-btn.imdb-icon{font-family:'Clash Display',sans-serif;font-weight:700;font-size:11px;letter-spacing:-0.02em;}
+  .catalog-foot{padding:24px 0 0;text-align:center;color:var(--dim);font-size:12px;letter-spacing:0.06em;text-transform:uppercase;}
+
+  .miniplayer{position:fixed;left:0;right:0;bottom:0;z-index:180;background:var(--ink);color:var(--paper);transform:translateY(100%);transition:transform .4s cubic-bezier(.2,.8,.2,1);}
+  .miniplayer.show{transform:translateY(0);}
+  .mp-inner{max-width:1180px;margin:0 auto;padding:14px 32px;display:flex;align-items:center;gap:18px;}
+  .mp-meta{flex-shrink:0;min-width:0;}
+  .mp-meta .t{font-family:'Clash Display',sans-serif;font-size:16px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .mp-meta .g{font-size:11px;color:var(--rust);text-transform:uppercase;letter-spacing:0.06em;}
+  .mp-toggle{width:38px;height:38px;border-radius:50%;background:var(--rust);border:none;flex-shrink:0;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+  .mp-toggle .ico-play{border-style:solid;border-width:6px 0 6px 10px;border-color:transparent transparent transparent var(--ink);margin-left:2px;}
+  .mp-toggle .ico-pause{width:4px;height:12px;border-left:4px solid var(--ink);border-right:4px solid var(--ink);}
+  .mp-bar{flex:1;height:4px;background:rgba(244,236,218,0.25);border-radius:4px;overflow:hidden;cursor:pointer;}
+  .mp-bar-fill{height:100%;width:0%;background:var(--rust);}
+  .mp-close{background:none;border:none;color:var(--paper);font-size:20px;cursor:pointer;opacity:.6;flex-shrink:0;}
+  .mp-close:hover{opacity:1;}
+  @media (max-width:640px){.mp-meta{display:none;}}
 </style>
 </head>
 <body>
@@ -82,39 +141,480 @@
     <div class="catalog-head">
       <div class="kicker">All Access</div>
       <h1>The Full Catalog</h1>
-      <p>Twenty tracks across four projects. Titles are placeholders &mdash; send the real track list and I'll drop it in.</p>
+      <p>Every project, organized by name and genre. Filter to find what you need, or browse it all.</p>
     </div>
-    <div class="full-tracklist" id="fullTracklist"></div>
+
+    <div class="filters">
+      <select id="projectFilter" aria-label="Filter by project"></select>
+      <select id="genreFilter" aria-label="Filter by genre"></select>
+      <select id="moodFilter" aria-label="Filter by mood"></select>
+      <button class="filter-clear" id="filterClear" type="button">Clear filters</button>
+      <span class="filter-count" id="filterCount"></span>
+    </div>
+
+    <div id="fullTracklist"></div>
+
     <div class="request-note">
-      <p>The complete, always-current catalog streams on Disco &mdash; by request only.</p>
-      <a class="rbtn" href="mailto:tyler@tylerforrest.com?subject=Disco%20Catalog%20Access">Request Disco Access</a>
+      <p>Need stems, an instrumental version, or a custom edit for sync? Reach out.</p>
+      <a class="rbtn" href="mailto:tyler@tylerforrest.com?subject=Sync%20%2F%20Licensing%20Inquiry">Email Tyler</a>
     </div>
+
+    <div class="social-icons">
+      <a class="icon-btn imdb-icon" href="https://www.imdb.com/name/nm4731168/" target="_blank" rel="noopener" aria-label="IMDb">IMDb</a>
+      <a class="icon-btn" href="https://www.youtube.com/@tylerforrest" target="_blank" rel="noopener" aria-label="YouTube">
+        <svg viewBox="0 0 24 24"><path d="M23.5 6.2c-.3-1.1-1.1-1.9-2.2-2.2C19.4 3.5 12 3.5 12 3.5s-7.4 0-9.3.5c-1.1.3-1.9 1.1-2.2 2.2C0 8.1 0 12 0 12s0 3.9.5 5.8c.3 1.1 1.1 1.9 2.2 2.2 1.9.5 9.3.5 9.3.5s7.4 0 9.3-.5c1.1-.3 1.9-1.1 2.2-2.2.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.5V8.5l6.4 3.5-6.4 3.5z"/></svg>
+      </a>
+      <a class="icon-btn" href="https://www.tiktok.com/@tylerforrest" target="_blank" rel="noopener" aria-label="TikTok">
+        <svg viewBox="0 0 24 24"><path d="M16.6 5.8c-.9-.9-1.4-2.1-1.4-3.4h-3.3v13.4c0 1.5-1.2 2.7-2.7 2.7s-2.7-1.2-2.7-2.7 1.2-2.7 2.7-2.7c.3 0 .6 0 .8.1V9.9c-.3 0-.5-.1-.8-.1-3.3 0-6 2.7-6 6s2.7 6 6 6 6-2.7 6-6V9.4c1.3.9 2.8 1.5 4.5 1.5V7.6c-1.1 0-2.2-.4-3.1-1.1-.1-.1-.7-.6-1-.7z"/></svg>
+      </a>
+      <a class="icon-btn" href="https://www.instagram.com/rowdyhop" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.9.2 2.3.4.6.2 1 .5 1.4.9.4.4.7.9.9 1.4.2.4.4 1.1.4 2.3.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.2 1.9-.4 2.3-.2.6-.5 1-.9 1.4-.4.4-.9.7-1.4.9-.4.2-1.1.4-2.3.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.9-.2-2.3-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.9-.9-1.4-.2-.4-.4-1.1-.4-2.3-.1-1.3-.1-1.7-.1-4.9s0-3.6.1-4.9c.1-1.2.2-1.9.4-2.3.2-.6.5-1 .9-1.4.4-.4.9-.7 1.4-.9.4-.2 1.1-.4 2.3-.4 1.3-.1 1.7-.1 4.9-.1M12 0C8.7 0 8.3 0 7 .1 5.7.1 4.8.3 4 .6c-.8.3-1.5.7-2.2 1.4C1.1 2.7.7 3.4.4 4.2.1 5 0 5.9 0 7.1 0 8.3 0 8.7 0 12s0 3.7.1 4.9c.1 1.3.2 2.1.5 2.9.3.8.7 1.5 1.4 2.2.7.7 1.4 1.1 2.2 1.4.8.3 1.6.4 2.9.5 1.2.1 1.6.1 4.9.1s3.7 0 4.9-.1c1.3-.1 2.1-.2 2.9-.5.8-.3 1.5-.7 2.2-1.4.7-.7 1.1-1.4 1.4-2.2.3-.8.4-1.6.5-2.9.1-1.2.1-1.6.1-4.9s0-3.7-.1-4.9c-.1-1.3-.2-2.1-.5-2.9-.3-.8-.7-1.5-1.4-2.2C21.3 1.1 20.6.7 19.8.4 19 .1 18.2 0 16.9 0 15.7 0 15.3 0 12 0z"/><path d="M12 5.8c-3.4 0-6.2 2.8-6.2 6.2s2.8 6.2 6.2 6.2 6.2-2.8 6.2-6.2-2.8-6.2-6.2-6.2zm0 10.2c-2.2 0-4-1.8-4-4s1.8-4 4-4 4 1.8 4 4-1.8 4-4 4z"/><circle cx="18.4" cy="5.6" r="1.4"/></svg>
+      </a>
+      <a class="icon-btn" href="https://www.linkedin.com/in/tyleralanforrest" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24"><path d="M20.4 2H3.6C2.7 2 2 2.7 2 3.6v16.8c0 .9.7 1.6 1.6 1.6h16.8c.9 0 1.6-.7 1.6-1.6V3.6c0-.9-.7-1.6-1.6-1.6zM8.3 19.3H5.5V9.9h2.8v9.4zM6.9 8.6c-.9 0-1.6-.7-1.6-1.6s.7-1.6 1.6-1.6 1.6.7 1.6 1.6-.7 1.6-1.6 1.6zm12.4 10.7h-2.8v-4.6c0-1.1 0-2.5-1.5-2.5s-1.8 1.2-1.8 2.4v4.7H10.4V9.9h2.7v1.2h.1c.4-.7 1.3-1.5 2.7-1.5 2.9 0 3.4 1.9 3.4 4.3v5.4z"/></svg>
+      </a>
+    </div>
+
+    <img src="images/logo.png" alt="Tyler Forrest" class="catalog-logo">
+    <div class="catalog-foot">&copy; <span id="year"></span> Tyler Forrest. All rights reserved.</div>
   </div>
 </div>
 
+<div class="miniplayer" id="miniplayer">
+  <div class="mp-inner">
+    <div class="mp-meta"><div class="t" id="mpTitle">&mdash;</div><div class="g" id="mpGenre">&mdash;</div></div>
+    <button class="mp-toggle" id="mpToggle"><span class="ico-play" id="mpIcon"></span></button>
+    <div class="mp-bar" id="mpBar"><div class="mp-bar-fill" id="mpBarFill"></div></div>
+    <button class="mp-close" id="mpClose">&times;</button>
+  </div>
+</div>
+<audio id="audioEl" preload="none"></audio>
+
 <script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
   var PASSWORD = "champion";
 
-  var projects = [
-    { name: "Rowdy Hop", genre: "Country / Crossover" },
-    { name: "Damn We Dope", genre: "Hip Hop" },
-    { name: "Tyler Forrest", genre: "Americana" },
-    { name: "Say Don't Play", genre: "Pop Rock" }
+  // Base public R2 URL. Track `file` values below are "Project Folder/filename.ext"
+  // exactly as they appear in the bucket -- spaces/apostrophes are encoded automatically.
+  var BASE_URL = "https://pub-58562022c63b4521b6230a13fc1df2de.r2.dev/";
+
+  // Projects = the folders in the bucket, each tagged with its genre.
+  var PROJECTS = [
+    { name: "Rowdy Hop",      genre: "Country-Crossover" },
+    { name: "Damn We Dope",   genre: "Hip-Hop / Experimental" },
+    { name: "Saturn Dash",    genre: "Sexy Space Pop R&B" },
+    { name: "The Dirty South",genre: "Southern Soul & Rock" },
+    { name: "Tyler Forrest",  genre: "Southern Rock / Pop" },
+    { name: "Say Don't Play", genre: "Pop / Rock" },
+    { name: "The Scared Crows", genre: "Rock" },
+    { name: "Southern Heart", genre: "Southern Rock / Pop" },
+    { name: "Ear Bleed",      genre: "Electronic / Experimental" },
+    { name: "Instrumentals",  genre: "Underscores & Beats" },
+    { name: "Unreleased Songs", genre: "Uncategorized" }
   ];
 
-  var tracklistEl = document.getElementById('fullTracklist');
-  var rows = '';
-  for (var i = 1; i <= 20; i++) {
-    var proj = projects[(i - 1) % 4];
-    var num = i < 10 ? '0' + i : i;
-    rows += '<div class="ftrack">' +
-      '<span class="num">' + num + '</span>' +
-      '<div><h3>Track ' + num + '</h3><div class="proj">' + proj.name + '</div></div>' +
-      '<span class="genre">' + proj.genre + '</span>' +
-      '</div>';
-  }
-  tracklistEl.innerHTML = rows;
+  // Add every track here as: { title: "Song Title", project: "Rowdy Hop", file: "Rowdy Hop/Song Title.mp3" }
+  // Optional `artist` field shows a small credit line under the title (used for multi-artist folders).
+  // Optional `tags` field is a string of theme/mood keywords (inferred from the title) so search can
+  // surface songs by vibe, not just literal title matches -- e.g. searching "love" finds "Seducted".
+  var TRACKS = [
+    // Damn We Dope
+    { title: "The Arrival", project: "Damn We Dope", file: "Damn We Dope/01-The Arrival.mp3", tags: "arrival beginning entrance", mood: "Ambition" },
+    { title: "Up We Go", project: "Damn We Dope", file: "Damn We Dope/02-Up We Go.mp3", tags: "rise ambition motivation hustle", mood: "Ambition" },
+    { title: "AIAA", project: "Damn We Dope", file: "Damn We Dope/03-AIAA.mp3", tags: "hype energy", mood: "Party" },
+    { title: "The Message", project: "Damn We Dope", file: "Damn We Dope/04-The Message.mp3", tags: "truth statement message", mood: "Reflective" },
+    { title: "Nightmare", project: "Damn We Dope", file: "Damn We Dope/05-Nightmare.mp3", tags: "dark fear dream scary", mood: "Dark & Edgy" },
+    { title: "Ape Shit", project: "Damn We Dope", file: "Damn We Dope/06-Ape Shit.mp3", tags: "wild hype party crazy", mood: "Party" },
+    { title: "The Order", project: "Damn We Dope", file: "Damn We Dope/07-The Order.mp3", tags: "power control command", mood: "Confidence" },
+    { title: "Best Choice", project: "Damn We Dope", file: "Damn We Dope/08-Best Choice.mp3", tags: "decision confidence", mood: "Confidence" },
+    { title: "Mr. Charlie's", project: "Damn We Dope", file: "Damn We Dope/09-Mr. Charlie's.mp3", tags: "story night character", mood: "Reflective" },
+    { title: "The Demand", project: "Damn We Dope", file: "Damn We Dope/10-The Demand.mp3", tags: "pressure hustle ambition", mood: "Ambition" },
+    { title: "Steppin'", project: "Damn We Dope", file: "Damn We Dope/11-Steppin'.mp3", tags: "confidence swagger strut", mood: "Confidence" },
+    { title: "Space Invaders", project: "Damn We Dope", file: "Damn We Dope/12-Space Invaders.mp3", tags: "space sci-fi aliens", mood: "Party" },
+    { title: "Invasion", project: "Damn We Dope", file: "Damn We Dope/13-Invasion.mp3", tags: "space conflict takeover", mood: "Dark & Edgy" },
+    { title: "Hunted", project: "Damn We Dope", file: "Damn We Dope/14-Hunted.mp3", tags: "fear chase danger", mood: "Dark & Edgy" },
+    { title: "Goodbye", project: "Damn We Dope", file: "Damn We Dope/15-Goodbye.mp3", tags: "heartbreak farewell loss goodbye", mood: "Heartbreak" },
+    { title: "The Departure", project: "Damn We Dope", file: "Damn We Dope/16-The Departure.mp3", tags: "farewell leaving goodbye", mood: "Heartbreak" },
 
+    // Rowdy Hop
+    { title: "Saddle Up", project: "Rowdy Hop", file: "Rowdy Hop/01-Saddle-Up.mp3", tags: "adventure country ride", mood: "Freedom" },
+    { title: "Barn to the Boulevard", project: "Rowdy Hop", file: "Rowdy Hop/02-Barn-to-the-Boulevard.mp3", tags: "country city journey", mood: "Freedom" },
+    { title: "Get Rowdy, Get Low", project: "Rowdy Hop", file: "Rowdy Hop/03-Get-Rowdy-Get-Low.mp3", tags: "party dance wild", mood: "Party" },
+    { title: "Fixing Myself", project: "Rowdy Hop", file: "Rowdy Hop/04-Fixing-Myself.mp3", tags: "healing growth self improvement", mood: "Reflective" },
+    { title: "#1 Champion", project: "Rowdy Hop", file: "Rowdy Hop/05-#1-Champion.mp3", tags: "winning confidence pride victory", mood: "Confidence" },
+    { title: "Rowdy", project: "Rowdy Hop", file: "Rowdy Hop/06-Rowdy.mp3", tags: "party wild energy", mood: "Party" },
+    { title: "Ready to Run", project: "Rowdy Hop", file: "Rowdy Hop/07-Ready-to-Run.mp3", tags: "freedom escape adventure", mood: "Freedom" },
+    { title: "Wild Horse", project: "Rowdy Hop", file: "Rowdy Hop/08-Wild-Horse.mp3", tags: "freedom wild untamed", mood: "Freedom" },
+    { title: "Winner's Circle", project: "Rowdy Hop", file: "Rowdy Hop/09-Winner's-Circle.mp3", tags: "winning pride success", mood: "Confidence" },
+    { title: "Zero Bucks Given", project: "Rowdy Hop", file: "Rowdy Hop/10-Zero-Bucks-Given.mp3", tags: "confidence carefree attitude", mood: "Confidence" },
+    { title: "Hometown", project: "Rowdy Hop", file: "Rowdy Hop/Hometown.mp3", tags: "nostalgia home roots", mood: "Nostalgia" },
+    { title: "Country Mess Express", project: "Rowdy Hop", file: "Rowdy Hop/LANDR-Country Mess Express-Open-High.wav", tags: "country chaos party", mood: "Party" },
+    { title: "All Roads End Here", project: "Rowdy Hop", file: "Rowdy Hop/LANDR-all roads end here-Open-High.wav", tags: "journey destiny ending", mood: "Reflective" },
+    { title: "Don't Mess with Texas", project: "Rowdy Hop", file: "Rowdy Hop/LANDR-don't mess with texas-Open-High.mp3", tags: "pride attitude home state", mood: "Confidence" },
+    { title: "Get the Gold", project: "Rowdy Hop", file: "Rowdy Hop/LANDR-get the gold-Open-High.mp3", tags: "ambition success wealth money", mood: "Ambition" },
+    { title: "The Gold Is Mine", project: "Rowdy Hop", file: "Rowdy Hop/LANDR-the gold is mine-Open-High.mp3", tags: "ambition success pride money", mood: "Ambition" },
+    { title: "Coffee Sips", project: "Rowdy Hop", file: "Rowdy Hop/coffee sips.mp3", tags: "morning chill relax", mood: "Chill" },
+    { title: "Country Style", project: "Rowdy Hop", file: "Rowdy Hop/country style.mp3", tags: "country lifestyle pride", mood: "Confidence" },
+    { title: "Fell in Love at the Festival", project: "Rowdy Hop", file: "Rowdy Hop/fell in love at the festival.mp3", tags: "love romance festival summer", mood: "Love" },
+    { title: "Rowdy Syndrome", project: "Rowdy Hop", file: "Rowdy Hop/rowdy syndrome.wav", tags: "party wild energy", mood: "Party" },
+
+    // Saturn Dash
+    { title: "Candle in the Dark", project: "Saturn Dash", file: "Saturn Dash/Candle in the Dark.mp3", tags: "romance intimacy mystery night", mood: "Love" },
+    { title: "Deep", project: "Saturn Dash", file: "Saturn Dash/Deep.mp3", tags: "intimacy emotion connection love", mood: "Love" },
+    { title: "Goodbye", project: "Saturn Dash", file: "Saturn Dash/Goodbye.mp3", tags: "heartbreak farewell loss", mood: "Heartbreak" },
+    { title: "Hunted", project: "Saturn Dash", file: "Saturn Dash/Hunted.mp3", tags: "chase desire danger", mood: "Dark & Edgy" },
+    { title: "I Love You", project: "Saturn Dash", file: "Saturn Dash/I Love You.mp3", tags: "love romance devotion", mood: "Love" },
+    { title: "Invasion", project: "Saturn Dash", file: "Saturn Dash/Invasion.mp3", tags: "space desire takeover", mood: "Dark & Edgy" },
+    { title: "My Heart", project: "Saturn Dash", file: "Saturn Dash/My Heart.mp3", tags: "love romance heartbreak", mood: "Love" },
+    { title: "One Thing", project: "Saturn Dash", file: "Saturn Dash/One Thing.mp3", tags: "desire longing focus", mood: "Love" },
+    { title: "Seducted", project: "Saturn Dash", file: "Saturn Dash/Seducted.mp3", tags: "desire romance temptation love sexy", mood: "Love" },
+    { title: "Special", project: "Saturn Dash", file: "Saturn Dash/Special.mp3", tags: "love romance connection", mood: "Love" },
+    { title: "Your Love", project: "Saturn Dash", file: "Saturn Dash/Your Love.mp3", tags: "love romance devotion", mood: "Love" },
+
+    // Say Don't Play
+    { title: "Beautiful", project: "Say Don't Play", file: "Say Don't Play/Beautiful.wav", tags: "love confidence admiration", mood: "Love" },
+    { title: "Colors", project: "Say Don't Play", file: "Say Don't Play/Colors.mp3", tags: "emotion life vibrant", mood: "Joy" },
+    { title: "Dance Forever", project: "Say Don't Play", file: "Say Don't Play/Dance Forever.wav", tags: "party dance joy celebration", mood: "Party" },
+    { title: "Daydream", project: "Say Don't Play", file: "Say Don't Play/Daydream.wav", tags: "dreams escape fantasy", mood: "Chill" },
+    { title: "Destination Fame", project: "Say Don't Play", file: "Say Don't Play/Destination Fame.mp3", tags: "ambition fame dreams", mood: "Ambition" },
+    { title: "Don't Let Me Go", project: "Say Don't Play", file: "Say Don't Play/Don't Let Me Go.wav", tags: "love longing heartbreak", mood: "Love" },
+    { title: "Friendship To Kill", project: "Say Don't Play", file: "Say Don't Play/Friendship To Kill.wav", tags: "betrayal friendship conflict", mood: "Dark & Edgy" },
+    { title: "Get Up, Get Out", project: "Say Don't Play", file: "Say Don't Play/Get Up, Get Out.mp3", tags: "motivation breakup moving on", mood: "Heartbreak" },
+    { title: "Give It All", project: "Say Don't Play", file: "Say Don't Play/Give It All.mp3", tags: "motivation passion effort", mood: "Ambition" },
+    { title: "Home Is Not My Hero", project: "Say Don't Play", file: "Say Don't Play/Home Is Not My Hero.mp3", tags: "home disillusionment growing up", mood: "Reflective" },
+    { title: "I'll Ask the Rain", project: "Say Don't Play", file: "Say Don't Play/I'll Ask the Rain.mp3", tags: "sadness longing nature", mood: "Reflective" },
+    { title: "IDGAF About You", project: "Say Don't Play", file: "Say Don't Play/IDGAF About You.wav", tags: "attitude breakup confidence", mood: "Confidence" },
+    { title: "Introduction", project: "Say Don't Play", file: "Say Don't Play/Introduction.wav", tags: "intro beginning", mood: "Reflective" },
+    { title: "Lost Homes, Lost Cars", project: "Say Don't Play", file: "Say Don't Play/Lost Homes, Lost Cars.mp3", tags: "loss nostalgia struggle", mood: "Nostalgia" },
+    { title: "Love Can't Hurt My Heart", project: "Say Don't Play", file: "Say Don't Play/Love Can't Hurt My Heart.wav", tags: "love resilience heartbreak", mood: "Love" },
+    { title: "Love Faker Pt. II", project: "Say Don't Play", file: "Say Don't Play/Love Faker Pt. II.wav", tags: "heartbreak betrayal love", mood: "Heartbreak" },
+    { title: "Love Sick", project: "Say Don't Play", file: "Say Don't Play/Love Sick.wav", tags: "love heartbreak longing", mood: "Heartbreak" },
+    { title: "More Than Anything", project: "Say Don't Play", file: "Say Don't Play/More Than Anything.wav", tags: "love devotion", mood: "Love" },
+    { title: "New Cocaine", project: "Say Don't Play", file: "Say Don't Play/New Cocaine.wav", tags: "party edgy vice", mood: "Party" },
+    { title: "Oh, What a Day", project: "Say Don't Play", file: "Say Don't Play/Oh, What a Day.mp3", tags: "reflection life day", mood: "Reflective" },
+    { title: "Scene From The Movie", project: "Say Don't Play", file: "Say Don't Play/Scene From The Movie.wav", tags: "nostalgia storytelling romance", mood: "Nostalgia" },
+    { title: "She'll Be There", project: "Say Don't Play", file: "Say Don't Play/She'll Be There.mp3", tags: "love hope support", mood: "Love" },
+    { title: "Slipping Away", project: "Say Don't Play", file: "Say Don't Play/Slipping Away.mp3", tags: "loss heartbreak fading", mood: "Heartbreak" },
+    { title: "Stay With Me", project: "Say Don't Play", file: "Say Don't Play/Stay With Me.mp3", tags: "love longing intimacy", mood: "Love" },
+    { title: "The Only Way", project: "Say Don't Play", file: "Say Don't Play/The Only Way.mp3", tags: "determination journey", mood: "Ambition" },
+    { title: "Thinkin'", project: "Say Don't Play", file: "Say Don't Play/Thinkin'.wav", tags: "reflection longing", mood: "Reflective" },
+
+    // Southern Heart
+    { title: "Clean", project: "Southern Heart", file: "Southern Heart/Clean.mp3", tags: "renewal sobriety honesty", mood: "Reflective" },
+    { title: "Come Back", project: "Southern Heart", file: "Southern Heart/Come Back.mp3", tags: "longing love regret", mood: "Heartbreak" },
+    { title: "Coming Home with Me", project: "Southern Heart", file: "Southern Heart/Coming Home with Me.mp3", tags: "love home invitation romance", mood: "Love" },
+    { title: "Find Me", project: "Southern Heart", file: "Southern Heart/Find Me.mp3", tags: "longing searching love", mood: "Love" },
+    { title: "Home", project: "Southern Heart", file: "Southern Heart/Home.mp3", tags: "home nostalgia roots", mood: "Nostalgia" },
+    { title: "Hurt You", project: "Southern Heart", file: "Southern Heart/Hurt You.mp3", tags: "heartbreak regret love", mood: "Heartbreak" },
+    { title: "Island", project: "Southern Heart", file: "Southern Heart/Island.mp3", tags: "escape paradise freedom", mood: "Freedom" },
+    { title: "Kind of Guy", project: "Southern Heart", file: "Southern Heart/Kind of Guy.mp3", tags: "identity confidence attitude", mood: "Confidence" },
+    { title: "Live It Up", project: "Southern Heart", file: "Southern Heart/Live It Up.mp3", tags: "party freedom joy", mood: "Party" },
+    { title: "Oh Yeah", project: "Southern Heart", file: "Southern Heart/Oh Yeah.mp3", tags: "joy confidence celebration", mood: "Joy" },
+
+    // The Dirty South (multi-artist compilation)
+    { title: "The Dirty South", project: "The Dirty South", artist: "Jovin Webb", file: "The Dirty South/01 - Jovin Webb - The Dirty South.wav", tags: "south grit home", mood: "Nostalgia" },
+    { title: "The Flo", project: "The Dirty South", artist: "Kori Lynn", file: "The Dirty South/02 - Kori Lynn - The Flo.mp3", tags: "flow groove rhythm", mood: "Party" },
+    { title: "That Woman", project: "The Dirty South", artist: "Tyler Forrest", file: "The Dirty South/04 - Tyler Forrest - That Woman.wav", tags: "love romance southern", mood: "Love" },
+    { title: "Gone Out The Window", project: "The Dirty South", artist: "Jovin Webb", file: "The Dirty South/05 - Jovin Webb - Gone Out The Window.wav", tags: "loss chaos breakup", mood: "Heartbreak" },
+    { title: "Sittin Still", project: "The Dirty South", artist: "Spencer Brunson", file: "The Dirty South/06 - Spencer Brunson - Sittin Still.wav", tags: "patience calm reflection", mood: "Chill" },
+    { title: "Going Down", project: "The Dirty South", artist: "VZ", file: "The Dirty South/11 - VZ - Going Down.wav", tags: "struggle party edge", mood: "Dark & Edgy" },
+
+    // The Scared Crows
+    { title: "30 Is The New 20", project: "The Scared Crows", file: "The Scared Crows/30 Is The New 20.mp3", tags: "age youth confidence", mood: "Confidence" },
+    { title: "Animal (C)", project: "The Scared Crows", file: "The Scared Crows/Animal (C).mp3", tags: "wild primal energy", mood: "Party" },
+    { title: "Animal", project: "The Scared Crows", file: "The Scared Crows/Animal.mp3", tags: "wild primal energy", mood: "Party" },
+    { title: "Bad Habits", project: "The Scared Crows", file: "The Scared Crows/Bad Habits.mp3", tags: "vice self-destruction temptation", mood: "Dark & Edgy" },
+    { title: "Bad Mother", project: "The Scared Crows", file: "The Scared Crows/Bad Mother.mp3", tags: "rebellion family attitude", mood: "Confidence" },
+    { title: "Dear Moon", project: "The Scared Crows", file: "The Scared Crows/Dear Moon.mp3", tags: "night longing reflection", mood: "Reflective" },
+    { title: "End Of The World", project: "The Scared Crows", file: "The Scared Crows/End Of The World.mp3", tags: "apocalypse drama intensity", mood: "Dark & Edgy" },
+    { title: "Good Vibe", project: "The Scared Crows", file: "The Scared Crows/Good Vibe.mp3", tags: "joy positivity chill", mood: "Joy" },
+    { title: "Gunz", project: "The Scared Crows", file: "The Scared Crows/Gunz.mp3", tags: "edge danger rebellion", mood: "Dark & Edgy" },
+    { title: "Harvey Talk", project: "The Scared Crows", file: "The Scared Crows/Harvey Talk.mp3", tags: "storytelling conversation character", mood: "Reflective" },
+    { title: "Have Yourself A Good Time", project: "The Scared Crows", file: "The Scared Crows/Have Yourself A Good Time.mp3", tags: "party joy celebration", mood: "Party" },
+    { title: "Hour Glass", project: "The Scared Crows", file: "The Scared Crows/Hour Glass.mp3", tags: "time mortality reflection", mood: "Reflective" },
+    { title: "IHYPD", project: "The Scared Crows", file: "The Scared Crows/IHYPD.mp3", tags: "attitude edge rebellion", mood: "Confidence" },
+    { title: "Loser", project: "The Scared Crows", file: "The Scared Crows/Loser.mp3", tags: "self-deprecation heartbreak identity", mood: "Heartbreak" },
+    { title: "Mercy", project: "The Scared Crows", file: "The Scared Crows/Mercy.mp3", tags: "forgiveness redemption plea", mood: "Reflective" },
+    { title: "Number One Fan", project: "The Scared Crows", file: "The Scared Crows/Number One Fan.wav", tags: "obsession fandom devotion", mood: "Love" },
+    { title: "Quarantine", project: "The Scared Crows", file: "The Scared Crows/Quarantine.wav", tags: "isolation reflection", mood: "Reflective" },
+    { title: "Quicksand", project: "The Scared Crows", file: "The Scared Crows/Quicksand.mp3", tags: "struggle trapped anxiety", mood: "Dark & Edgy" },
+    { title: "What It Is", project: "The Scared Crows", file: "The Scared Crows/What It Is.mp3", tags: "honesty attitude truth", mood: "Confidence" },
+    { title: "Your Own Way", project: "The Scared Crows", file: "The Scared Crows/Your Own Way.mp3", tags: "independence freedom identity", mood: "Freedom" },
+
+    // Ear Bleed
+    { title: "Acceleration", project: "Ear Bleed", file: "Ear Bleed/Acceleration.mp3", tags: "speed energy intensity electronic", mood: "Party" },
+    { title: "Dizzy Eyed", project: "Ear Bleed", file: "Ear Bleed/Dizzy Eyed.mp3", tags: "disorientation trippy chaos", mood: "Dark & Edgy" },
+    { title: "Eat Death", project: "Ear Bleed", file: "Ear Bleed/Eat Death.mp3", tags: "dark aggressive intense", mood: "Dark & Edgy" },
+    { title: "Nascent", project: "Ear Bleed", file: "Ear Bleed/Nascent.mp3", tags: "beginning emergence new", mood: "Ambition" },
+    { title: "Psyche Out", project: "Ear Bleed", file: "Ear Bleed/Psyche Out.mp3", tags: "mind trippy disorientation", mood: "Dark & Edgy" },
+    { title: "Speed", project: "Ear Bleed", file: "Ear Bleed/Speed.mp3", tags: "speed energy urgency", mood: "Party" },
+    { title: "The Moment", project: "Ear Bleed", file: "Ear Bleed/The Moment.mp3", tags: "reflection presence intensity", mood: "Reflective" },
+    { title: "Watch This", project: "Ear Bleed", file: "Ear Bleed/Watch This.mp3", tags: "confidence hype showoff", mood: "Confidence" },
+    { title: "What", project: "Ear Bleed", file: "Ear Bleed/What.mp3", tags: "confusion chaos energy", mood: "Dark & Edgy" },
+
+    // Instrumentals
+    { title: "Money Drop 2", project: "Instrumentals", file: "Instrumentals/money drop 2.mp3", tags: "money hustle beat underscore", mood: "Ambition" },
+    { title: "Money Drop 3", project: "Instrumentals", file: "Instrumentals/money drop 3.mp3", tags: "money hustle beat underscore", mood: "Ambition" },
+    { title: "Money Drop 4", project: "Instrumentals", file: "Instrumentals/money drop 4.mp3", tags: "money hustle beat underscore", mood: "Ambition" },
+    { title: "Money Drop 5", project: "Instrumentals", file: "Instrumentals/money drop 5.wav", tags: "money hustle beat underscore", mood: "Ambition" },
+    { title: "Money Drop 6", project: "Instrumentals", file: "Instrumentals/money drop 6.mp3", tags: "money hustle beat underscore", mood: "Ambition" },
+    { title: "Money Drop 7", project: "Instrumentals", file: "Instrumentals/money drop 7.mp3", tags: "money hustle beat underscore", mood: "Ambition" },
+    { title: "Money Drop 8", project: "Instrumentals", file: "Instrumentals/money drop 8.mp3", tags: "money hustle beat underscore", mood: "Ambition" },
+    { title: "Money Drop 9", project: "Instrumentals", file: "Instrumentals/money drop 9.mp3", tags: "money hustle beat underscore", mood: "Ambition" },
+    { title: "Money Drop 10", project: "Instrumentals", file: "Instrumentals/money drop 10.mp3", tags: "money hustle beat underscore", mood: "Ambition" },
+    { title: "Money Drop 11", project: "Instrumentals", file: "Instrumentals/money drop 11.mp3", tags: "money hustle beat underscore", mood: "Ambition" },
+
+    // Unreleased Songs
+    { title: "Alive (Piano)", project: "Unreleased Songs", file: "Unreleased Songs/Auto Ty - Alive (Piano).mp3", tags: "reflection life emotion", mood: "Reflective" },
+    { title: "Alive", project: "Unreleased Songs", file: "Unreleased Songs/Auto Ty - Alive.mp3", tags: "life energy existence", mood: "Joy" },
+    { title: "Anyone Like You", project: "Unreleased Songs", file: "Unreleased Songs/Auto Ty - Anyone Like You.mp3", tags: "love longing uniqueness", mood: "Love" },
+    { title: "Share My Love", project: "Unreleased Songs", file: "Unreleased Songs/Disco Baby - Share My Love.mp3", tags: "love romance giving", mood: "Love" },
+    { title: "Always Be My Baby", project: "Unreleased Songs", file: "Unreleased Songs/JamNation - Always Be My Baby.mp3", tags: "love devotion romance", mood: "Love" },
+    { title: "Faster", project: "Unreleased Songs", file: "Unreleased Songs/Sailboats - Faster.mp3", tags: "urgency speed freedom", mood: "Freedom" },
+    { title: "Soaring", project: "Unreleased Songs", file: "Unreleased Songs/Sailboats - Soaring.mp3", tags: "freedom flight joy", mood: "Freedom" },
+    { title: "Deadline", project: "Unreleased Songs", file: "Unreleased Songs/The Swings - Deadline.mp3", tags: "pressure urgency work", mood: "Ambition" },
+    { title: "Mystery", project: "Unreleased Songs", file: "Unreleased Songs/The Swings - Mystery.mp3", tags: "intrigue unknown suspense", mood: "Dark & Edgy" },
+    { title: "Make You Love Me", project: "Unreleased Songs", file: "Unreleased Songs/Ty and Cal - Make You Love Me.mp3", tags: "love desire persuasion", mood: "Love" },
+    { title: "Never Get You", project: "Unreleased Songs", file: "Unreleased Songs/Ty and Cal - Never Get You.mp3", tags: "longing rejection heartbreak love", mood: "Heartbreak" },
+    { title: "Color Blind", project: "Unreleased Songs", file: "Unreleased Songs/Tyler Forrest - Color Blind.mp3", tags: "love unity perception", mood: "Love" },
+    { title: "Damn Good Day", project: "Unreleased Songs", file: "Unreleased Songs/Tyler Forrest - Damn Good Day (2).mp3", tags: "joy gratitude positivity", mood: "Joy" },
+    { title: "Fight For Your Freedom", project: "Unreleased Songs", file: "Unreleased Songs/Tyler Forrest - Fight For Your Freedom.mp3", tags: "freedom struggle empowerment", mood: "Freedom" },
+    { title: "Here I Am Again", project: "Unreleased Songs", file: "Unreleased Songs/Tyler Forrest - Here I Am Again.mp3", tags: "reflection return struggle", mood: "Reflective" },
+    { title: "Intoxicated Confessions", project: "Unreleased Songs", file: "Unreleased Songs/Tyler Forrest - Intoxicated Confessions.mp3", tags: "vulnerability love night", mood: "Love" },
+    { title: "Love Is In The Air", project: "Unreleased Songs", file: "Unreleased Songs/Tyler Forrest - Love Is In The Air.mp3", tags: "love romance joy", mood: "Love" },
+    { title: "Merry Kissmas", project: "Unreleased Songs", file: "Unreleased Songs/Tyler Forrest - Merry Kissmas.mp3", tags: "holiday love celebration christmas", mood: "Joy" },
+    { title: "Never Loved Me", project: "Unreleased Songs", file: "Unreleased Songs/Tyler Forrest - Never Loved Me.mp3", tags: "heartbreak betrayal love", mood: "Heartbreak" },
+    { title: "Reach For The Stars", project: "Unreleased Songs", file: "Unreleased Songs/Tyler Forrest - Reach For The Stars.mp3", tags: "ambition dreams hope", mood: "Ambition" },
+    { title: "So Into You", project: "Unreleased Songs", file: "Unreleased Songs/Tyler Forrest - So Into You.mp3", tags: "love desire romance", mood: "Love" },
+    { title: "Summertime", project: "Unreleased Songs", file: "Unreleased Songs/Tyler Forrest - Summertime.mp3", tags: "summer nostalgia joy", mood: "Joy" },
+    { title: "Super Me", project: "Unreleased Songs", file: "Unreleased Songs/Tyler Forrest - Super Me.mp3", tags: "confidence empowerment identity", mood: "Confidence" },
+    { title: "The Way To Your Heart", project: "Unreleased Songs", file: "Unreleased Songs/Tyler Forrest - The Way To Your Heart.mp3", tags: "love romance devotion", mood: "Love" }
+  ];
+
+  function projectGenre(name){
+    for (var i = 0; i < PROJECTS.length; i++) if (PROJECTS[i].name === name) return PROJECTS[i].genre;
+    return "Uncategorized";
+  }
+  var GENRE_EMOJI = {
+    "Country-Crossover": "🤠",
+    "Hip-Hop / Experimental": "🔥",
+    "Sexy Space Pop R&B": "🚀",
+    "Southern Soul & Rock": "🎸",
+    "Southern Rock / Pop": "🧡",
+    "Pop / Rock": "✨",
+    "Rock": "🤘",
+    "Electronic / Experimental": "⚡",
+    "Underscores & Beats": "🎬",
+    "Uncategorized": "🎲",
+    "TBD": "🎲"
+  };
+  function genreEmoji(g){ return GENRE_EMOJI[g] || "🔥"; }
+
+  // Moods, in dropdown order, each with its own emoji.
+  var MOODS = [
+    { name: "Love", emoji: "❤️" },
+    { name: "Heartbreak", emoji: "💔" },
+    { name: "Party", emoji: "🎉" },
+    { name: "Confidence", emoji: "💪" },
+    { name: "Freedom", emoji: "🕊️" },
+    { name: "Ambition", emoji: "🚀" },
+    { name: "Nostalgia", emoji: "📼" },
+    { name: "Reflective", emoji: "🌙" },
+    { name: "Dark & Edgy", emoji: "⚔️" },
+    { name: "Chill", emoji: "😌" },
+    { name: "Joy", emoji: "✨" }
+  ];
+  function moodEmoji(m){
+    for (var i = 0; i < MOODS.length; i++) if (MOODS[i].name === m) return MOODS[i].emoji;
+    return "🎵";
+  }
+  var expandedState = {};
+  function trackSrc(t){
+    return BASE_URL + t.file.split('/').map(encodeURIComponent).join('/');
+  }
+  function esc(s){
+    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  // ---- Filters + tracklist rendering ----
+  var projectSelect = document.getElementById('projectFilter');
+  var genreSelect = document.getElementById('genreFilter');
+  var moodSelect = document.getElementById('moodFilter');
+  var filterClear = document.getElementById('filterClear');
+  var filterCount = document.getElementById('filterCount');
+  var listEl = document.getElementById('fullTracklist');
+
+  var projOpts = '<option value="all">All Projects</option>';
+  PROJECTS.forEach(function(p){ projOpts += '<option value="' + esc(p.name) + '">' + esc(p.name) + '</option>'; });
+  projectSelect.innerHTML = projOpts;
+
+  var seenGenres = [];
+  PROJECTS.forEach(function(p){ if (seenGenres.indexOf(p.genre) === -1) seenGenres.push(p.genre); });
+  var genreOpts = '<option value="all">All Genres</option>';
+  seenGenres.forEach(function(g){ genreOpts += '<option value="' + esc(g) + '">' + esc(g) + '</option>'; });
+  genreSelect.innerHTML = genreOpts;
+
+  var moodOpts = '<option value="all">All Moods</option>';
+  MOODS.forEach(function(m){ moodOpts += '<option value="' + esc(m.name) + '">' + m.emoji + ' ' + esc(m.name) + '</option>'; });
+  moodSelect.innerHTML = moodOpts;
+
+  function render(){
+    var pf = projectSelect.value;
+    var gf = genreSelect.value;
+    var mf = moodSelect.value;
+    var filtered = TRACKS.filter(function(t){
+      var okP = pf === 'all' || t.project === pf;
+      var okG = gf === 'all' || projectGenre(t.project) === gf;
+      var okM = mf === 'all' || t.mood === mf;
+      return okP && okG && okM;
+    });
+
+    filterCount.textContent = filtered.length + (filtered.length === 1 ? ' track' : ' tracks');
+
+    if (!filtered.length) {
+      listEl.innerHTML = '<div class="empty-state">' + (TRACKS.length
+        ? 'Nothing matches that filter yet &mdash; try clearing it.'
+        : 'Tracks are being added to the catalog now &mdash; check back soon, or reach out for early access.') + '</div>';
+      return;
+    }
+
+    var groupsToRender = PROJECTS.filter(function(p){
+      return filtered.some(function(t){ return t.project === p.name; });
+    });
+
+    var html = '';
+    groupsToRender.forEach(function(p){
+      var group = filtered.filter(function(t){ return t.project === p.name; });
+      var isOpen = expandedState[p.name] || groupsToRender.length === 1 || mf !== 'all';
+      html += '<div class="project-group' + (isOpen ? ' open' : '') + '" data-project="' + esc(p.name) + '">' +
+        '<div class="project-group-head" data-group-toggle>' +
+          '<h2>' + esc(p.name) + '</h2>' +
+          '<span class="pg-genre">' + genreEmoji(p.genre) + ' ' + esc(p.genre) + '</span>' +
+          '<span class="pg-count">' + group.length + (group.length === 1 ? ' track' : ' tracks') + '</span>' +
+          '<span class="pg-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></span>' +
+        '</div>' +
+        '<div class="group-tracks">';
+      group.forEach(function(t, i){
+        var num = (i + 1) < 10 ? '0' + (i + 1) : (i + 1);
+        var artistLine = t.artist ? '<div class="t-artist">' + esc(t.artist) + '</div>' : '';
+        var moodLine = t.mood ? '<div class="t-mood">' + moodEmoji(t.mood) + ' ' + esc(t.mood) + '</div>' : '';
+        html += '<div class="ftrack" data-title="' + esc(t.title) + '" data-genre="' + esc(p.genre) + '" data-src="' + trackSrc(t) + '">' +
+          '<div class="track-head" data-toggle>' +
+            '<span class="num">' + num + '</span>' +
+            '<div><h3>' + esc(t.title) + '</h3>' + artistLine + '</div>' +
+            moodLine +
+            '<span class="play-icon"></span>' +
+          '</div></div>';
+      });
+      html += '</div></div>';
+    });
+    listEl.innerHTML = html;
+    bindTrackEvents();
+    bindGroupEvents();
+  }
+
+  function bindGroupEvents(){
+    document.querySelectorAll('[data-group-toggle]').forEach(function(head){
+      head.addEventListener('click', function(){
+        var group = head.closest('.project-group');
+        var name = group.dataset.project;
+        var willOpen = !group.classList.contains('open');
+        expandedState[name] = willOpen;
+        group.classList.toggle('open', willOpen);
+      });
+    });
+  }
+
+  projectSelect.addEventListener('change', render);
+  genreSelect.addEventListener('change', render);
+  moodSelect.addEventListener('change', render);
+  filterClear.addEventListener('click', function(){
+    projectSelect.value = 'all';
+    genreSelect.value = 'all';
+    moodSelect.value = 'all';
+    render();
+  });
+
+  // ---- Mini player (mirrors index.html behavior) ----
+  var audio = document.getElementById('audioEl');
+  var miniplayer = document.getElementById('miniplayer');
+  var mpTitle = document.getElementById('mpTitle');
+  var mpGenre = document.getElementById('mpGenre');
+  var mpIcon = document.getElementById('mpIcon');
+  var mpToggle = document.getElementById('mpToggle');
+  var mpBar = document.getElementById('mpBar');
+  var mpBarFill = document.getElementById('mpBarFill');
+  var mpClose = document.getElementById('mpClose');
+  var currentTrack = null;
+
+  function setPlayingIcon(isPlaying){
+    mpIcon.className = isPlaying ? 'ico-pause' : 'ico-play';
+  }
+
+  function openTrack(trackEl){
+    document.querySelectorAll('.ftrack').forEach(function(t){ if (t !== trackEl) t.classList.remove('playing'); });
+    currentTrack = trackEl;
+    mpTitle.textContent = trackEl.dataset.title;
+    mpGenre.textContent = trackEl.dataset.genre;
+    miniplayer.classList.add('show');
+    document.body.style.paddingBottom = miniplayer.offsetHeight + 'px';
+    var src = trackEl.dataset.src;
+    audio.src = src;
+    audio.play();
+    trackEl.classList.add('playing');
+    setPlayingIcon(true);
+  }
+
+  function bindTrackEvents(){
+    document.querySelectorAll('.ftrack').forEach(function(track){
+      var head = track.querySelector('[data-toggle]');
+      head.addEventListener('click', function(){
+        if (currentTrack === track && track.classList.contains('playing')) {
+          track.classList.remove('playing');
+          if (audio.src) audio.pause();
+          setPlayingIcon(false);
+          return;
+        }
+        openTrack(track);
+      });
+    });
+  }
+
+  mpToggle.addEventListener('click', function(){
+    if (!currentTrack) return;
+    if (audio.src && !audio.paused) {
+      audio.pause();
+      currentTrack.classList.remove('playing');
+      setPlayingIcon(false);
+    } else if (audio.src) {
+      audio.play();
+      currentTrack.classList.add('playing');
+      setPlayingIcon(true);
+    }
+  });
+
+  audio.addEventListener('timeupdate', function(){
+    if (audio.duration) mpBarFill.style.width = (audio.currentTime / audio.duration * 100) + '%';
+  });
+  mpBar.addEventListener('click', function(e){
+    if (!audio.duration) return;
+    var rect = mpBar.getBoundingClientRect();
+    var pct = (e.clientX - rect.left) / rect.width;
+    audio.currentTime = pct * audio.duration;
+  });
+  mpClose.addEventListener('click', function(){
+    audio.pause();
+    miniplayer.classList.remove('show');
+    document.body.style.paddingBottom = '';
+    if (currentTrack) currentTrack.classList.remove('playing');
+    currentTrack = null;
+    setPlayingIcon(false);
+  });
+
+  render();
+
+  // ---- Password gate ----
   var gate = document.getElementById('gate');
   var catalog = document.getElementById('catalog');
   var gateForm = document.getElementById('gateForm');
@@ -127,9 +627,7 @@
     sessionStorage.setItem('catalogUnlocked', '1');
   }
 
-  if (sessionStorage.getItem('catalogUnlocked') === '1') {
-    unlock();
-  }
+  if (sessionStorage.getItem('catalogUnlocked') === '1') unlock();
 
   gateForm.addEventListener('submit', function(e){
     e.preventDefault();
