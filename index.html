@@ -65,6 +65,9 @@
   .poster-wall{display:grid;grid-template-columns:repeat(6,1fr);gap:0;width:100%;}
   @media (max-width:900px){.poster-wall{grid-template-columns:repeat(3,1fr);}}
   @media (max-width:560px){.poster-wall{grid-template-columns:repeat(2,1fr);}}
+  .live-wall{grid-template-columns:repeat(3,1fr);}
+  .live-wall .poster-tile{aspect-ratio:1/1;cursor:default;}
+  @media (max-width:700px){.live-wall{grid-template-columns:repeat(1,1fr);}}
   .poster-tile{position:relative;aspect-ratio:2/3;overflow:hidden;background:var(--ink);cursor:pointer;}
   .poster-tile:nth-child(even){background:var(--rust);}
   .poster-tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;}
@@ -161,9 +164,10 @@
   <ul class="overlay-links">
     <li><a href="#top"><span class="idx">01</span>Credits</a></li>
     <li><a href="#music"><span class="idx">02</span>Music</a></li>
-    <li><a href="#sync"><span class="idx">03</span>Sync</a></li>
-    <li><a href="#bio"><span class="idx">04</span>Bio</a></li>
-    <li><a href="#contact"><span class="idx">05</span>Contact</a></li>
+    <li><a href="#live"><span class="idx">03</span>Live</a></li>
+    <li><a href="#sync"><span class="idx">04</span>Sync</a></li>
+    <li><a href="#bio"><span class="idx">05</span>Bio</a></li>
+    <li><a href="#contact"><span class="idx">06</span>Contact</a></li>
   </ul>
   <div class="overlay-foot">
     <a href="mailto:tyler@tylerforrest.com">tyler@tylerforrest.com</a>
@@ -181,7 +185,7 @@
       <span class="tile-num">01</span>
       <div class="tile-scrim">
         <h3>The Dirty South</h3>
-        <div class="tag">Feature Film</div>
+        <div class="tag">Composer</div>
       </div>
     </a>
     <a class="poster-tile" data-poster-slot="search-and-destroy" href="https://www.imdb.com/title/tt11791146/" target="_blank" rel="noopener">
@@ -189,7 +193,7 @@
       <span class="tile-num">02</span>
       <div class="tile-scrim">
         <h3>Search and Destroy</h3>
-        <div class="tag">Feature Film</div>
+        <div class="tag">Composer</div>
       </div>
     </a>
     <a class="poster-tile" data-poster-slot="herman" href="https://www.imdb.com/title/tt34938727/" target="_blank" rel="noopener">
@@ -197,7 +201,7 @@
       <span class="tile-num">03</span>
       <div class="tile-scrim">
         <h3>Herman</h3>
-        <div class="tag">Feature Film</div>
+        <div class="tag">Composer</div>
       </div>
     </a>
     <a class="poster-tile" data-poster-slot="strings" href="https://www.imdb.com/title/tt6833084/" target="_blank" rel="noopener">
@@ -205,7 +209,7 @@
       <span class="tile-num">04</span>
       <div class="tile-scrim">
         <h3>Strings</h3>
-        <div class="tag">Feature Film</div>
+        <div class="tag">Composer</div>
       </div>
     </a>
     <a class="poster-tile" data-poster-slot="on-her-way-home" href="https://www.imdb.com/title/tt38590421/" target="_blank" rel="noopener">
@@ -213,7 +217,7 @@
       <span class="tile-num">05</span>
       <div class="tile-scrim">
         <h3>On Her Way Home</h3>
-        <div class="tag">Short Film</div>
+        <div class="tag">Composer</div>
       </div>
     </a>
     <a class="poster-tile" data-poster-slot="suicide-disco" href="https://www.suicidediscomovie.com/" target="_blank" rel="noopener">
@@ -221,7 +225,7 @@
       <span class="tile-num">06</span>
       <div class="tile-scrim">
         <h3>Suicide Disco</h3>
-        <div class="tag">Feature Film</div>
+        <div class="tag">Composer</div>
       </div>
     </a>
   </div>
@@ -318,6 +322,39 @@
       <a class="listen-btn" href="catalog.html">Full Catalog</a>
       <a class="rowdy-link" href="https://rowdyhop.com" target="_blank" rel="noopener">More from Rowdy Hop &mdash; rowdyhop.com</a>
     </div>
+  </div>
+</section>
+
+<section id="live" style="padding:0;">
+  <div class="container" style="padding-top:110px;padding-bottom:110px;">
+  <div class="kicker">Session Player</div>
+    <h2 class="sec-title" style="margin-bottom:50px;">Session Guitarist</h2>
+  <div class="poster-wall live-wall">
+    <div class="poster-tile">
+      <img src="images/mad-apple.jpg" alt="Cirque du Soleil Mad Apple">
+      <span class="tile-num">01</span>
+      <div class="tile-scrim">
+        <h3>Cirque du Soleil &mdash; Mad Apple</h3>
+        <div class="tag">Session Guitarist</div>
+      </div>
+    </div>
+    <div class="poster-tile">
+      <img src="images/auana.jpg" alt="Cirque du Soleil Auana">
+      <span class="tile-num">02</span>
+      <div class="tile-scrim">
+        <h3>Cirque du Soleil &mdash; Auana</h3>
+        <div class="tag">Session Guitarist</div>
+      </div>
+    </div>
+    <div class="poster-tile">
+      <img src="images/now-you-see-me.jpg" alt="Now You See Me Live">
+      <span class="tile-num">03</span>
+      <div class="tile-scrim">
+        <h3>Now You See Me &ndash; Live</h3>
+        <div class="tag">Session Guitarist</div>
+      </div>
+    </div>
+  </div>
   </div>
 </section>
 
